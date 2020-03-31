@@ -30,6 +30,10 @@ export class AgregarLineaPage implements OnInit {
     this.db.collection('/fabrica/' + this.id + '/linea').add({
       nombre: linea
     })
+    .then(res=>{
+      console.log(res.id);
+      
+    })
     alert('se guardo')
    // this.lineas.recuperalineas(this.id).subscribe(dat=>{
    //   dat.forEach(i =>{
