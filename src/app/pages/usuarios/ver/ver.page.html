@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Datos del Empleado</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-list>
+    <ion-item>
+      <ion-label>Nombre: {{usu.nombre}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Correo: {{usu.email}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Telefono: {{usu.telefono}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Rol: {{usu.rol}}</ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

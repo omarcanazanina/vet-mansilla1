@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Agregar Usuario</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<!--
+  
+-->
+<ion-content class="ion-padding">
+  <ion-list>
+    <form [formGroup]="registerForm" (ngSubmit)="registrate()">
+      <ion-item>
+        <ion-label position="stacked"> Nombre</ion-label>
+        <ion-input required formControlName="nombre" type="text"></ion-input>
+      </ion-item>
+      <app-validation [error]="registerForm.get('nombre').errors" [variable]="registerForm.get('nombre')"
+      nombre="El nombre "></app-validation>
+      <ion-item>
+        <ion-label position="stacked"> Telefono</ion-label>
+        <ion-input required formControlName="telefono" type="tel"></ion-input>
+      </ion-item>
+      <app-validation [error]="registerForm.get('telefono').errors" [variable]="registerForm.get('telefono')"
+      nombre="El telefono "></app-validation>
+      <ion-item>
+        <ion-label>Rol</ion-label>
+        <ion-select ok-text="Aceptar" cancel-text="Cancelar" formControlName="rol" placeholder="Seleccione">
+          <ion-select-option value="vendedor">Vendedor</ion-select-option>
+          <ion-select-option value="repartidor">Repartidor</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <app-validation [error]="registerForm.get('rol').errors" [variable]="registerForm.get('rol')"
+      nombre="El telefono "></app-validation>
+      <ion-item>
+        <ion-label position="stacked"> Correo</ion-label>
+        <ion-input required formControlName="email" type="text"></ion-input>
+      </ion-item>
+      <app-validation [error]="registerForm.get('email').errors" [variable]="registerForm.get('email')"
+      nombre="El correo "></app-validation>
+      <ion-item>
+        <ion-label position="stacked"> Contraseña</ion-label>
+        <ion-input required formControlName="password" type="password"></ion-input>
+      </ion-item>
+      <app-validation [error]="registerForm.get('password').errors" [variable]="registerForm.get('password')"
+          nombre="La contraseña "></app-validation>
+      <ion-item>
+        <ion-label position="stacked"> Confirmar contraseña</ion-label>
+        <ion-input required formControlName="confirm_password" type="password"></ion-input>
+      </ion-item>
+      <app-validation [error]="registerForm.get('confirm_password').errors" [variable]="registerForm.get('confirm_password')"
+          nombre="La contraseña "></app-validation>
+      <ion-button expand="block" type="submit" [disabled]="registerForm.invalid">
+        Registrar
+      </ion-button>
+    </form>
+  </ion-list>
+
+</ion-content>
