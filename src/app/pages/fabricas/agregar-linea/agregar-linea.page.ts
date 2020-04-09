@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { LineasService } from '../../../servicios/lineas.service';
+import { UiService } from 'src/app/servicios/ui.service';
 
 @Component({
   selector: 'app-agregar-linea',
@@ -12,9 +13,10 @@ export class AgregarLineaPage implements OnInit {
   @Input() id;
   @Input() nombre;
 
+  animal = null
   constructor(private modal: ModalController,
-    private db:AngularFirestore,
-    private lineas:LineasService) { }
+    private db: AngularFirestore,
+    private uiService: UiService) { }
 
   ngOnInit() {
   }
@@ -26,39 +28,28 @@ export class AgregarLineaPage implements OnInit {
     })
   }
 
-  aceptar(linea, animal) {
-    this.db.collection('/fabrica/' + this.id + '/linea').add({
-      nombre: linea
-    })
-    .then(res=>{
-      console.log(res.id);
-      
-    })
-    alert('se guardo')
-   // this.lineas.recuperalineas(this.id).subscribe(dat=>{
-   //   dat.forEach(i =>{
-   //     this.lineas.recuperaunalinea(i.nombre).subscribe(res =>{
-   //       console.log(res);
-   //       
-   //     })
-   //   })
-   // })
+  aceptar(linea) {
+    this.uiService.presentAlertConfirm("Seguro que desea guardar la linea",
+      () => {
+        this.uiService.presentLoading("Guardando linea...").then(load => {
+          this.db.collection('/fabrica/' + this.id + '/linea').add({
+            nombre: linea,
+            estado: true
+          })
+            .then(res => {
+              console.log(res.id);
+              this.db.collection('animales-linea').add({
+                nombre: this.animal,
+                nombre_linea: linea,
+                id_linea: res.id,
+                estado: true
+              })
+            })
+          load.dismiss()
+          this.uiService.MessageToastSuccess("linea guardada correctamente")
+          this.salir()
+        })
+      })
   }
 
-//  pruebas(){
-//    this.lineas.recuperalineas(this.id).subscribe(dat=>{
-//      dat.forEach(i =>{
-//        this.lineas.recuperaunalinea('otra',this.id).subscribe(res =>{
-//          console.log(res);
-//          
-//        })
-//      })
-//    //  dat.forEach(i =>{
-//    //    this.lineas.recuperaunalinea(i.nombre).subscribe(res =>{
-//    //      console.log(res);
-//    //      
-//    //    })
-//    //  })
-//    })
-//  }
 }

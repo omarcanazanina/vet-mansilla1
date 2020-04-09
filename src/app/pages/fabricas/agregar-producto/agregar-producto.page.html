@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Crear producto - {{nombre}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label position="floating" >Tipo</ion-label>
+    <ion-input [(ngModel)]= "tipo"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating" >Características</ion-label>
+    <ion-textarea [(ngModel)]= "caracteristicas"></ion-textarea>
+  </ion-item>
+</ion-content>

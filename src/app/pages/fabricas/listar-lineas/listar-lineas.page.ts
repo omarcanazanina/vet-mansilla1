@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController, AlertController } from '@ionic/angular';
 import { LineasService } from 'src/app/servicios/lineas.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AgregarLineaPage } from '../agregar-linea/agregar-linea.page';
 
 @Component({
@@ -15,7 +15,7 @@ export class ListarLineasPage implements OnInit {
   lista_lineas: any
   constructor(private activatedRoute: ActivatedRoute,
     private alertController: AlertController,
-    //private db:AngularFirestore,
+    private router:Router,
     private lineas: LineasService,
     private modal: ModalController) { }
 
@@ -37,8 +37,11 @@ export class ListarLineasPage implements OnInit {
     })
     await modal.present()
     const data = await modal.onDidDismiss();
-    console.log('retorno' + data);
-
+   // console.log('retorno' + data);
   }
+
+  ir_producto(item) {
+    this.router.navigate(['/tabs/fabricas/agregar-producto', item.id, item.nombre])
+}
 
 }

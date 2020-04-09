@@ -39,6 +39,10 @@ const routes: Routes = [
             path: 'listar-lineas/:id/:nombre',
             loadChildren: () => import('../pages/fabricas/listar-lineas/listar-lineas.module').then(m => m.ListarLineasPageModule)
           },
+          {
+            path: 'agregar-producto/:id/:nombre',
+            loadChildren: () => import('../pages/fabricas/agregar-producto/agregar-producto.module').then(m => m.AgregarProductoPageModule)
+          },
         ]
       },
       {

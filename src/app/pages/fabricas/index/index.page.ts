@@ -54,7 +54,8 @@ export class IndexPage implements OnInit {
                 this.uiService.presentLoading("Guardando fabrica...")
                   .then(load => {
                     this.db.collection('fabrica').add({
-                      nombre: dato.fabrica
+                      nombre: dato.fabrica,
+                      estado:true
                     })
                     
                     load.dismiss()

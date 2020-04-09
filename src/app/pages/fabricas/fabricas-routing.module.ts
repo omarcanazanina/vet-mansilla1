@@ -19,6 +19,10 @@ const routes: Routes = [
   {
     path: 'agregar-linea',
     loadChildren: () => import('./agregar-linea/agregar-linea.module').then( m => m.AgregarLineaPageModule)
+  },
+  {
+    path: 'agregar-producto',
+    loadChildren: () => import('./agregar-producto/agregar-producto.module').then( m => m.AgregarProductoPageModule)
   }
 ];
 

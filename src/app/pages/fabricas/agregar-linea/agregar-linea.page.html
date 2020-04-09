@@ -1,13 +1,13 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>Crear linea</ion-title>
+  <ion-toolbar color="primary">
+    <ion-item>     
+      <ion-icon name="arrow-back-outline" (click)="salir()"></ion-icon>
+      <ion-title>Crear linea</ion-title>
+    </ion-item>
   </ion-toolbar>
 </ion-header>
 
 <ion-content >
-<ion-button (click)="salir()">
-  <ion-label>salir</ion-label>
-</ion-button>
 
 
 <ion-item>
@@ -38,10 +38,7 @@
   </ion-radio-group>
 </ion-list>
 
-<ion-button expand="full" (click)="aceptar(linea,valor)">
+<ion-button expand="full" (click)="aceptar(linea)">
 Aceptar
 </ion-button>
-<ion-button expand="full" (click)="pruebas()">
-  Cancelar
-  </ion-button>
 </ion-content>
