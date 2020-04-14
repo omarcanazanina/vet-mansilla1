@@ -9,11 +9,21 @@ import { ActivatedRoute } from '@angular/router';
 export class AgregarProductoPage implements OnInit {
   id=null
   nombre=null
+  tipo:string
+  caracteristicas:string
+  edad:string
+  raza:string
   constructor(private activate:ActivatedRoute) { }
 
   ngOnInit() {
     this.id = this.activate.snapshot.paramMap.get('id')
     this.nombre = this.activate.snapshot.paramMap.get('nombre')
+    console.log(this.id +" "+ this.nombre);
+    
   }
 
+  guardar(){
+    console.log(this.tipo +' '+this.caracteristicas+' '+this.edad +' '+this.raza);
+    
+  }
 }

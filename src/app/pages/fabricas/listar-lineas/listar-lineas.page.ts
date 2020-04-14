@@ -41,7 +41,7 @@ export class ListarLineasPage implements OnInit {
   }
 
   ir_producto(item) {
-    this.router.navigate(['/tabs/fabricas/agregar-producto', item.id, item.nombre])
+    this.router.navigate(['/tabs/fabricas/listar-productos', item.id ,item.nombre])
 }
 
 }

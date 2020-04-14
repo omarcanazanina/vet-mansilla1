@@ -23,6 +23,10 @@ const routes: Routes = [
   {
     path: 'agregar-producto',
     loadChildren: () => import('./agregar-producto/agregar-producto.module').then( m => m.AgregarProductoPageModule)
+  },
+  {
+    path: 'listar-productos',
+    loadChildren: () => import('./listar-productos/listar-productos.module').then( m => m.ListarProductosPageModule)
   }
 ];
 

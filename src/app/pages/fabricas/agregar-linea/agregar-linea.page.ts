@@ -34,6 +34,7 @@ export class AgregarLineaPage implements OnInit {
         this.uiService.presentLoading("Guardando linea...").then(load => {
           this.db.collection('/fabrica/' + this.id + '/linea').add({
             nombre: linea,
+            animal:this.animal,
             estado: true
           })
             .then(res => {
