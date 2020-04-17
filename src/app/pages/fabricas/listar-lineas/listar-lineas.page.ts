@@ -12,6 +12,7 @@ import { AgregarLineaPage } from '../agregar-linea/agregar-linea.page';
 export class ListarLineasPage implements OnInit {
   id: any
   nombre: any
+  uid:any
   lista_lineas: any
   constructor(private activatedRoute: ActivatedRoute,
     private alertController: AlertController,
@@ -32,7 +33,8 @@ export class ListarLineasPage implements OnInit {
       component: AgregarLineaPage,
       componentProps: {
         id: this.id,
-        nombre: this.nombre
+        nombre: this.nombre,
+        //uid:this.uid
       }
     })
     await modal.present()
@@ -41,6 +43,8 @@ export class ListarLineasPage implements OnInit {
   }
 
   ir_producto(item) {
+    console.log(item);
+    
     this.router.navigate(['/tabs/fabricas/listar-productos', item.id ,item.nombre])
 }
 

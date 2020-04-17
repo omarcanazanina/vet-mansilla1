@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-agregar-producto',
@@ -13,7 +14,8 @@ export class AgregarProductoPage implements OnInit {
   caracteristicas:string
   edad:string
   raza:string
-  constructor(private activate:ActivatedRoute) { }
+  constructor(private activate:ActivatedRoute,
+    private db: AngularFirestore) { }
 
   ngOnInit() {
     this.id = this.activate.snapshot.paramMap.get('id')
@@ -24,6 +26,11 @@ export class AgregarProductoPage implements OnInit {
 
   guardar(){
     console.log(this.tipo +' '+this.caracteristicas+' '+this.edad +' '+this.raza);
-    
+  // this.db.collection('/user/'+).add({
+  //   nombre: this.animal,
+  //   nombre_linea: linea,
+  //   id_linea: res.id,
+  //   estado: true
+  // })
   }
 }

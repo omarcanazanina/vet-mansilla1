@@ -9,12 +9,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class ListarProductosPage implements OnInit {
   id: any
   nombre: any
+  uid:any
   constructor(private activatedRoute: ActivatedRoute,
     private route:Router) { }
 
   ngOnInit() {
     this.id = this.activatedRoute.snapshot.paramMap.get('id')
     this.nombre = this.activatedRoute.snapshot.paramMap.get('nombre')
+    
   }
 
   ir(){
