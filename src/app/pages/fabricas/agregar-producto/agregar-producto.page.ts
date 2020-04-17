@@ -27,9 +27,10 @@ export class AgregarProductoPage implements OnInit {
   guardar(){
     console.log(this.tipo +' '+this.caracteristicas+' '+this.edad +' '+this.raza);
   // this.db.collection('/user/'+).add({
-  //   nombre: this.animal,
-  //   nombre_linea: linea,
-  //   id_linea: res.id,
+  //   tipo: this.tipo,
+  //   caracteristicas: this.caracteristicas,
+  //   edad: this.edad,
+  //   raza:this.raza,
   //   estado: true
   // })
   }

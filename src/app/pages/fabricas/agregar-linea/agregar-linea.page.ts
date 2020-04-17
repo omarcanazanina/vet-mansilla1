@@ -45,6 +45,7 @@ export class AgregarLineaPage implements OnInit {
                 id_linea: res.id,
                 estado: true
               }).then(res1=>{
+                
                 console.log(res1.id);
               })
             })
