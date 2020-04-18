@@ -47,6 +47,14 @@ const routes: Routes = [
             path: 'agregar-producto/:id/:nombre',
             loadChildren: () => import('../pages/fabricas/agregar-producto/agregar-producto.module').then(m => m.AgregarProductoPageModule)
           },
+          {
+            path: 'listar-detalles/:idruta/:id/:tipo',
+            loadChildren: () => import('../pages/fabricas/listar-detalles/listar-detalles.module').then( m => m.ListarDetallesPageModule)
+          },
+          {
+            path: 'agregar-detalle/:idruta/:idproducto/:tipo',
+            loadChildren: () => import('../pages/fabricas/agregar-detalle/agregar-detalle.module').then( m => m.AgregarDetallePageModule)
+          }
         ]
       },
       {

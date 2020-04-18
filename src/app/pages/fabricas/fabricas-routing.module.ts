@@ -27,6 +27,14 @@ const routes: Routes = [
   {
     path: 'listar-productos',
     loadChildren: () => import('./listar-productos/listar-productos.module').then( m => m.ListarProductosPageModule)
+  },
+  {
+    path: 'listar-detalles',
+    loadChildren: () => import('./listar-detalles/listar-detalles.module').then( m => m.ListarDetallesPageModule)
+  },
+  {
+    path: 'agregar-detalle',
+    loadChildren: () => import('./agregar-detalle/agregar-detalle.module').then( m => m.AgregarDetallePageModule)
   }
 ];
 

@@ -3,21 +3,18 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>Productos - {{nombre}} </ion-title>
+    <ion-title>Detalle {{tipo}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 
 <ion-content>
 
-  <ion-item *ngFor="let producto of lista_productos " (click)= "listar_detalles(producto)" >
-    <ion-thumbnail slot="start">
-      <img src="./thumbnail.svg">
-    </ion-thumbnail>
+  <ion-item *ngFor="let detalle of lista_detalles "  >
     <ion-label>
-      <h2>{{producto.tipo}}</h2>
-      <p>{{producto.raza}}</p>
-      <p>{{producto.edad}}</p>
+      <h2>{{detalle.cantidad}}</h2>
+      <p>{{detalle.peso}}</p>
+      <p>{{detalle.precio}}</p>
     </ion-label>
   </ion-item>
 

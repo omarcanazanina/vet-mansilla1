@@ -43,7 +43,7 @@ export class ListarLineasPage implements OnInit {
   }
 
   ir_producto(item) {
-    console.log(item);
+    //console.log(item);
     
     this.router.navigate(['/tabs/fabricas/listar-productos', item.id ,item.nombre])
 }

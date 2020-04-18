@@ -74,7 +74,7 @@ export class IndexPage implements OnInit {
   listar_fabricas() {
     this.fabricas.recuperafabricas().subscribe(datos => {
       this.lista_fabricas = datos
-      console.log(this.lista_fabricas);
+   //   console.log(this.lista_fabricas);
 
     })
   }
