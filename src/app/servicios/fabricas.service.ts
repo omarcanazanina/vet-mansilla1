@@ -2,9 +2,11 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { map } from 'rxjs/operators';
+import { map, finalize } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-
+import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+import { AngularFireStorage } from '@angular/fire/storage';
+import { LoadingController } from '@ionic/angular';
 export interface fabrica {
   id: string;
   nombre: string;
@@ -37,7 +39,10 @@ export class FabricasService {
 
   constructor(private fireauth: AngularFireAuth,
     private router: Router,
-    private db: AngularFirestore) { }
+    private db: AngularFirestore,
+    private camera: Camera,
+    private afStorage:AngularFireStorage,
+    private loadingController: LoadingController) { }
 
 
   //recupera datos de la fabrica
@@ -83,4 +88,67 @@ export class FabricasService {
     }))
   }
 
+  estado_fabrica(id, estado) {
+    return this.db.collection('fabrica').doc(id).set(estado, { merge: true })
+  }
+ 
+
+  takecamera(){
+    const options: CameraOptions = {
+      quality: 100,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE
+    }
+    
+    return this.camera.getPicture(options).then((imageData) => {
+     // imageData is either a base64 encoded string or a file URI
+     // If it's base64 (DATA_URL):
+    let base64Image = 'data:image/jpeg;base64,' + imageData;
+    return base64Image
+    });
+  }
+  
+    takeGalley(){
+      const options: CameraOptions = {
+        quality: 100,
+        destinationType: this.camera.DestinationType.DATA_URL,
+        encodingType: this.camera.EncodingType.JPEG,
+        sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
+        mediaType: this.camera.MediaType.PICTURE
+      }
+      
+      return this.camera.getPicture(options).then((imageData) => {
+       // imageData is either a base64 encoded string or a file URI
+       // If it's base64 (DATA_URL):
+      let base64Image = 'data:image/jpeg;base64,' + imageData;
+      return base64Image
+      });
+    }
+
+     // subir imagen base 64
+     uploadImgB64(path: string, imageB64): Promise<any> {
+      return new Promise((resolve, reject) => {
+        let ref = this.afStorage.ref(path)
+        let task = ref.putString(imageB64, 'data_url');
+        task.snapshotChanges().pipe(
+          finalize(() => {
+            ref.getDownloadURL().subscribe(data => {
+              console.log(data);
+              resolve(data)
+            })
+          })
+        )
+          .subscribe()
+      });
+    }
+
+    async loading() {
+      const loading = await this.loadingController.create({
+        message: 'Espere por favor...',
+        duration: 2000
+      });
+      await loading.present();
+      return loading;
+    }
 }

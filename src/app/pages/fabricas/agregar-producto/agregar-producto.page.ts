@@ -60,4 +60,25 @@ export class AgregarProductoPage implements OnInit {
         })
       })
   }
+  galeria() {
+    const ejemplo = 'prueba'
+    this.service.takeGalley().then(res => {
+      let load = this.service.loading()
+      this.service.uploadImgB64('user/' + ejemplo + 'galery.jpg', res).then(url => {
+        alert('se pudo')
+        
+        //this.urlfinal = url
+        //this.au.reducirImagen(url).then( imgreducido =>{} )
+        // this.perfil=1
+       // this.imm = this.au.actualizarimg({ img: url }, this.usuario.uid)
+        load.then(loading => {
+          loading.dismiss();
+        })
+      }).catch(err => alert('error de upload' + err))
+    }).catch(err => alert(err))
+  }
+
+ 
+
+
 }

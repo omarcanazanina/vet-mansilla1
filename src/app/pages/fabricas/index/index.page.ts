@@ -117,5 +117,10 @@ export class IndexPage implements OnInit {
   ir_linea(item) {
       this.router.navigate(['/tabs/fabricas/listar-lineas', item.id, item.nombre])
   }
+  
+  estado(){
+    console.log('estamos en el estado');
+    
+  }
 
 }
