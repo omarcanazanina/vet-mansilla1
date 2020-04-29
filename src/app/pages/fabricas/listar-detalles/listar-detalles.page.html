@@ -10,12 +10,13 @@
 
 <ion-content>
 
-  <ion-item *ngFor="let detalle of lista_detalles "  >
+  <ion-item *ngFor="let detalle of lista_detalles "  (click)= "crud(detalle)">
     <ion-label>
       <h2>{{detalle.cantidad}}</h2>
       <p>{{detalle.peso}}</p>
       <p>{{detalle.precio}}</p>
     </ion-label>
+    <ion-icon slot="end" name="ellipsis-vertical" ></ion-icon>
   </ion-item>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">

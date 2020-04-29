@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FabricasService } from 'src/app/servicios/fabricas.service';
+import { ActionSheetController, NavController } from '@ionic/angular';
+import { UiService } from 'src/app/servicios/ui.service';
 
 @Component({
   selector: 'app-listar-productos',
@@ -22,7 +24,10 @@ export class ListarProductosPage implements OnInit {
 
   constructor(private activatedRoute: ActivatedRoute,
     private route: Router,
-    private service: FabricasService) { }
+    private service: FabricasService,
+    private actionSheetController: ActionSheetController,
+    private uiService: UiService,
+    private navCtrl: NavController) { }
 
   ngOnInit() {
     this.id = this.activatedRoute.snapshot.paramMap.get('id')
@@ -46,4 +51,56 @@ export class ListarProductosPage implements OnInit {
   listar_detalles(producto){
     this.route.navigate(['/tabs/fabricas/listar-detalles',this.id_ruta,producto.id,producto.tipo])
   }
+
+  async crud(item) {
+    const actionSheet = await this.actionSheetController.create({
+      header: 'Opciones',
+      buttons: [
+        {
+          text: 'Ver',
+          icon: 'eye',
+          handler: () => {
+            this.navCtrl.navigateForward(['tabs/fabricas/ver-producto',item])
+          }
+        },
+        {
+          text: 'Modificar',
+          icon: 'create',
+          handler: () => {
+            this.navCtrl.navigateForward(['tabs/fabricas/modificar-producto',item])
+          }
+        }, 
+       // {
+       //   text: item.estado?'Deshabilitar':'Habilitar',
+       //   role: 'destructive',
+       //   icon: item.estado?'trash':'power',
+       //  handler: () => {
+       //    console.log('Delete clicked');
+       //    this.uiService.presentLoading("Procesando...")
+       //    .then(load=>{
+       //      this.fabricas.modificarFabrica(item.id,{estado:!item.estado})
+       //      .then(()=>{
+       //        load.dismiss()
+       //      })
+       //      .catch(err=>{
+       //        load.dismiss()
+       //        console.log(err);
+//
+       //      })
+       //    })
+       //  }
+       // },
+         {
+          text: 'Cancel',
+          icon: 'close',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        }]
+    });
+
+    await actionSheet.present();
+  }
+
 }

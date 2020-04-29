@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Modificar Producto</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-list>
+    <form [formGroup]="registerForm" (ngSubmit)="registrate()">
+      <ion-item>
+        <ion-label position="stacked"> Tipo</ion-label>
+        <ion-input required formControlName="tipo" type="text"></ion-input>
+      </ion-item>
+      <app-validation [error]="registerForm.get('tipo').errors" [variable]="registerForm.get('tipo')" tipo="El tipo ">
+      </app-validation>
+      <ion-item>
+        <ion-label position="stacked"> Raza</ion-label>
+        <ion-input required formControlName="raza" type="text"></ion-input>
+      </ion-item>
+      <app-validation [error]="registerForm.get('raza').errors" [variable]="registerForm.get('raza')" raza="La raza ">
+      </app-validation>
+      <ion-item>
+        <ion-label position="stacked"> Edad</ion-label>
+        <ion-input required formControlName="edad" type="text"></ion-input>
+      </ion-item>
+      <app-validation [error]="registerForm.get('edad').errors" [variable]="registerForm.get('edad')" edad="La edad ">
+      </app-validation>
+      <ion-item>
+        <ion-label position="stacked"> Caracteristicas</ion-label>
+        <ion-input required formControlName="caracteristicas" type="text"></ion-input>
+      </ion-item>
+      <app-validation [error]="registerForm.get('caracteristicas').errors" [variable]="registerForm.get('caracteristicas')" caracteristicas="Las caracteristicas ">
+      </app-validation>
+
+
+      <ion-button expand="block" type="submit" [disabled]="registerForm.invalid">
+        Modificar
+      </ion-button>
+    </form>
+  </ion-list>
+
+</ion-content>

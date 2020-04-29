@@ -24,7 +24,6 @@ export class UsuarioService {
   }
   modificarEmpleado(uid:string,data:Usuario){
     console.log(uid,data);
-    
     return this.db.collection('users').doc(uid).set(data,{ merge: true })
   }
 }

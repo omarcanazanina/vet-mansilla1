@@ -7,9 +7,10 @@
 </ion-header>
 
 <ion-content >
-  <ion-item *ngFor="let item of lista_fabricas" (click)="ir_linea(item)">
-    <ion-icon slot="end" name="ellipsis-vertical" ></ion-icon>
-      <ion-label>{{item.nombre}}</ion-label>
+  <ion-item *ngFor="let item of lista_fabricas" >
+    <ion-icon slot="start" [name]="!item.estado?'close':'checkmark'"></ion-icon>
+    <ion-icon slot="end" name="ellipsis-vertical" (click)="crud(item)"></ion-icon>
+      <ion-label (click)="ir_linea(item)">{{item.nombre}}</ion-label>
   </ion-item>
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button (click)="ir()">

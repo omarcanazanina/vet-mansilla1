@@ -34,6 +34,7 @@ export class ModificarPage implements OnInit {
 
   }
   ngOnInit() {
+    
   }
   registrate() {
     this.uiService.presentLoading("Modificando Usuario...")

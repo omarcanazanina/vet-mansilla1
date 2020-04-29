@@ -18,7 +18,8 @@ export class IndexPage implements OnInit {
     private fabricas: FabricasService,
     private actionSheetController: ActionSheetController,
     private uiService: UiService,
-    private navCtrl: NavController) { }
+    private navCtrl: NavController
+    ) { }
 
   ngOnInit() {
     this.listar_fabricas()
@@ -116,11 +117,56 @@ export class IndexPage implements OnInit {
 
   ir_linea(item) {
       this.router.navigate(['/tabs/fabricas/listar-lineas', item.id, item.nombre])
+     // this.router.navigate(['/tabs/lineas/listar-lineas', item.id, item.nombre])
   }
   
-  estado(){
-    console.log('estamos en el estado');
-    
+  async crud(item) {
+    const actionSheet = await this.actionSheetController.create({
+      header: 'Opciones',
+      buttons: [
+        {
+          text: 'Ver',
+          icon: 'eye',
+          handler: () => {
+            this.navCtrl.navigateForward(['tabs/fabricas/ver-fabrica',item])
+          }
+        },
+        {
+          text: 'Modificar',
+          icon: 'create',
+          handler: () => {
+            this.navCtrl.navigateForward(['tabs/fabricas/modificar-fabrica',item])
+          }
+        }, {
+          text: item.estado?'Deshabilitar':'Habilitar',
+          role: 'destructive',
+          icon: item.estado?'trash':'power',
+         handler: () => {
+           console.log('Delete clicked');
+           this.uiService.presentLoading("Procesando...")
+           .then(load=>{
+             this.fabricas.modificarFabrica(item.id,{estado:!item.estado})
+             .then(()=>{
+               load.dismiss()
+             })
+             .catch(err=>{
+               load.dismiss()
+               console.log(err);
+
+             })
+           })
+         }
+        }, {
+          text: 'Cancel',
+          icon: 'close',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        }]
+    });
+
+    await actionSheet.present();
   }
 
 }

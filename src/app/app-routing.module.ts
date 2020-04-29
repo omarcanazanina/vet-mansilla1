@@ -35,6 +35,34 @@ const routes: Routes = [
     path: 'fabricas',
     loadChildren: () => import('./pages/fabricas/fabricas.module').then( m => m.FabricasPageModule)
   },
+  {
+    path: 'index',
+    loadChildren: () => import('./pages/lineas/index/index.module').then( m => m.IndexPageModule)
+  },
+  {
+    path: 'listar-lineas/:id/:nombre',
+    loadChildren: () => import('./pages/lineas/listar-lineas/listar-lineas.module').then( m => m.ListarLineasPageModule)
+  },
+  {
+    path: 'listar-productos',
+    loadChildren: () => import('./pages/productos/listar-productos/listar-productos.module').then( m => m.ListarProductosPageModule)
+  },
+  {
+    path: 'agregar-producto',
+    loadChildren: () => import('./pages/productos/agregar-producto/agregar-producto.module').then( m => m.AgregarProductoPageModule)
+  },
+  {
+    path: 'listar-detalles',
+    loadChildren: () => import('./pages/detalles/listar-detalles/listar-detalles.module').then( m => m.ListarDetallesPageModule)
+  },
+  {
+    path: 'agregar-detalle',
+    loadChildren: () => import('./pages/detalles/agregar-detalle/agregar-detalle.module').then( m => m.AgregarDetallePageModule)
+  },
+  {
+    path: 'index',
+    loadChildren: () => import('./pages/fabricas1/index/index.module').then( m => m.IndexPageModule)
+  },
 
 
 ];

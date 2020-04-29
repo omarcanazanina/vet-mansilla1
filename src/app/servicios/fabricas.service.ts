@@ -7,10 +7,21 @@ import { Observable } from 'rxjs';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { LoadingController } from '@ionic/angular';
+//
 export interface fabrica {
-  id: string;
-  nombre: string;
+  id?: string;
+  nombre?: string;
+  estado?:boolean
 }
+
+export interface linea {
+  id?: string;
+  animal?: string;
+  estado?: boolean;
+  nombre?: string
+}
+
+
 
 export interface animales_linea {
   id: string
@@ -21,12 +32,19 @@ export interface animales_linea {
 }
 
 export interface productos {
-  tipo:string,
-  estado:boolean,
-  edad:string,
-  caracteristicas:string,
-  raza:string
-  id:string
+  tipo?:string,
+  estado?:boolean,
+  edad?:string,
+  caracteristicas?:string,
+  raza?:string
+  id?:string
+}
+
+export interface detalle {
+  cantidad?:number,
+  peso?:number,
+  precio?:number,
+  id?:string
 }
 
 @Injectable({
@@ -55,6 +73,17 @@ export class FabricasService {
       })
     }))
   }
+  //modificar fabrica
+  modificarFabrica(uid:string,data:fabrica){
+    console.log(uid,data);
+    return this.db.collection('fabrica').doc(uid).set(data,{ merge: true })
+  }
+   //modificar linea
+   modificarLinea(uid:string,idfabrica: string, data:fabrica){
+    console.log(uid,data);
+    return this.db.collection('/fabrica/'+idfabrica+'/linea').doc(uid).set(data,{ merge: true })
+  }
+
   // recupera los productos
   recuperaproductos(id:string) {
     return this.db.collection('/animales-linea/'+id+'/productos').snapshotChanges().pipe(map(dat => {

@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Modificar Detalle</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-list>
+    <form [formGroup]="registerForm" (ngSubmit)="registrate()">
+      <ion-item>
+        <ion-label position="stacked"> Cantidad</ion-label>
+        <ion-input required formControlName="cantidad" type="text"></ion-input>
+      </ion-item>
+
+      <app-validation [error]="registerForm.get('cantidad').errors" [variable]="registerForm.get('cantidad')"
+        cantidad="La cantidad "></app-validation>
+      <ion-item>
+        <ion-label position="stacked"> Peso</ion-label>
+        <ion-input required formControlName="peso" type="text"></ion-input>
+      </ion-item>
+
+      <app-validation [error]="registerForm.get('peso').errors" [variable]="registerForm.get('peso')"
+        peso="El peso "></app-validation>
+
+      <ion-item>
+        <ion-label position="stacked"> Precio</ion-label>
+        <ion-input required formControlName="precio" type="text"></ion-input>
+      </ion-item>
+
+      <app-validation [error]="registerForm.get('precio').errors" [variable]="registerForm.get('precio')"
+        precio="El precio "></app-validation>
+
+
+
+
+      <ion-button expand="block" type="submit" [disabled]="registerForm.invalid">
+        Modificar
+      </ion-button>
+    </form>
+  </ion-list>
+
+</ion-content>
