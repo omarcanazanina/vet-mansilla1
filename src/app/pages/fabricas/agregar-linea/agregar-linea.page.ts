@@ -40,8 +40,8 @@ export class AgregarLineaPage implements OnInit {
             .then(res => {
               console.log(res.id);
               this.db.collection('animales-linea').add({
-                nombre: this.animal,
-                nombre_linea: linea,
+                animal: this.animal,
+                nombre: linea,
                 id_linea: res.id,
                 estado: true
               }).then(res1=>{

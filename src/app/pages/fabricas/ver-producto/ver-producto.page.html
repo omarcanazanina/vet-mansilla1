@@ -19,7 +19,12 @@
       <ion-label>Edad: {{producto.edad}}</ion-label>
     </ion-item>
     <ion-item>
-      <ion-label>Caracteristicas: {{producto.caracteristicas}}</ion-label>
+      <ion-label position="stacked">Caracteristicas</ion-label>
+      <ion-textarea
+        disabled
+        readonly
+        value=" {{producto.caracteristicas}}">
+      </ion-textarea>
     </ion-item>
   </ion-list>
 </ion-content>

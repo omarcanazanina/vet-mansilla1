@@ -4,14 +4,16 @@ import { LineasService } from 'src/app/servicios/lineas.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AgregarLineaPage } from '../agregar-linea/agregar-linea.page';
 import { UiService } from 'src/app/servicios/ui.service';
-import { FabricasService } from 'src/app/servicios/fabricas.service';
-
+import { FabricasService, linea } from 'src/app/servicios/fabricas.service';
 @Component({
   selector: 'app-listar-lineas',
   templateUrl: './listar-lineas.page.html',
   styleUrls: ['./listar-lineas.page.scss'],
 })
 export class ListarLineasPage implements OnInit {
+  linea: linea = {}
+  //id_ruta: string
+
   id: any
   nombre: any
   uid: any
@@ -29,8 +31,10 @@ export class ListarLineasPage implements OnInit {
   ngOnInit() {
     this.id = this.activatedRoute.snapshot.paramMap.get('id')
     this.nombre = this.activatedRoute.snapshot.paramMap.get('nombre')
+
     this.lineas.recuperalineas(this.id).subscribe(datos => {
       this.lista_lineas = datos
+
     })
   }
 
@@ -55,6 +59,11 @@ export class ListarLineasPage implements OnInit {
   }
 
   async crud(item) {
+    item.fabrica = this.id
+    this.lineas.recupera_id_animal_linea(item.id).subscribe(res => {
+      this.linea = res[0]
+      item.id_ruta = this.linea.id
+    })
     const actionSheet = await this.actionSheetController.create({
       header: 'Opciones',
       buttons: [
@@ -72,26 +81,25 @@ export class ListarLineasPage implements OnInit {
             this.navCtrl.navigateForward(['tabs/fabricas/modificar-linea', item])
           }
         },
-       //{
-       //  text: item.estado ? 'Deshabilitar' : 'Habilitar',
-       //  role: 'destructive',
-       //  icon: item.estado ? 'trash' : 'power',
-       //  handler: () => {
-       //    console.log('Delete clicked');
-       //    this.uiService.presentLoading("Procesando...")
-       //      .then(load => {
-       //        this.fabricas.modificarFabrica(item.id, { estado: !item.estado })
-       //          .then(() => {
-       //            load.dismiss()
-       //          })
-       //          .catch(err => {
-       //            load.dismiss()
-       //            console.log(err);
-
-       //          })
-       //      })
-       //  }
-       //},
+        {
+          text: item.estado ? 'Deshabilitar' : 'Habilitar',
+          role: 'destructive',
+          icon: item.estado ? 'trash' : 'power',
+          handler: () => {
+            console.log('Delete clicked');
+            this.uiService.presentLoading("Procesando...")
+              .then(load => {
+                this.fabricas.modificarLinea(item.id,item.fabrica,{ estado: !item.estado })
+                  .then(() => {
+                    load.dismiss()
+                  })
+                  .catch(err => {
+                    load.dismiss()
+                    console.log(err)
+                  })
+              })
+          }
+        },
         {
           text: 'Cancel',
           icon: 'close',
@@ -100,9 +108,11 @@ export class ListarLineasPage implements OnInit {
             console.log('Cancel clicked');
           }
         }]
-    });
-
+    })
     await actionSheet.present();
+
+
   }
+
 
 }

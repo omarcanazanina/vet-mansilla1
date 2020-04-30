@@ -11,6 +11,8 @@
 <ion-content>
 
   <ion-item *ngFor="let producto of lista_productos "  >
+
+    <ion-icon slot="start" [name]="!producto.estado?'close':'checkmark'"></ion-icon>
     <ion-thumbnail slot="start">
       <img src="./thumbnail.svg">
     </ion-thumbnail>

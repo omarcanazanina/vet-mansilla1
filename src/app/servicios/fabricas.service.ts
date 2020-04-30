@@ -180,4 +180,29 @@ export class FabricasService {
       await loading.present();
       return loading;
     }
+
+      //recupera 
+   recupera_id_animal_linea(id: string): Observable<any> {
+    var query = ref => ref.where('id_linea', '==', id)
+    return this.db.collection('/animales-linea/', query).snapshotChanges().pipe(map(changes => {
+      return changes.map(a => {
+        const data = a.payload.doc.data() as animales_linea;
+        data.id = a.payload.doc.id;
+        return data;
+      })
+    }))
+  }
+
+   //modificar linea
+   modificarProducto(uid:string, id_ruta: string, data:linea){
+    console.log(uid,data);
+    return this.db.collection('/animales-linea/'+id_ruta+'/productos').doc(uid).set(data,{ merge: true })
+  }
+ //modificar linea
+ modificarDetalle(uid:string, idlinea: string, idproducto: string, data:linea){
+  console.log(uid,data);
+  return this.db.collection('/animales-linea/'+idlinea+'/productos/'+idproducto+'/detalle').doc(uid).set(data,{ merge: true })
+}
+
+
 }

@@ -9,6 +9,8 @@
 
 <ion-content>
   <ion-item *ngFor="let item of lista_lineas"  >
+
+    <ion-icon slot="start" [name]="!item.estado?'close':'checkmark'"></ion-icon>
     <ion-icon slot="end" name="ellipsis-vertical" (click)="crud(item)"></ion-icon>
       <ion-label (click)="ir_producto(item)">{{item.nombre}}</ion-label>
       <p>{{item.animal}}</p>

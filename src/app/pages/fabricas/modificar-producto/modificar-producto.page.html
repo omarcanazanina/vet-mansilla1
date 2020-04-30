@@ -9,7 +9,7 @@
 
 <ion-content class="ion-padding">
   <ion-list>
-    <form [formGroup]="registerForm" (ngSubmit)="registrate()">
+    <form [formGroup]="registerForm" (ngSubmit)="modificar()">
       <ion-item>
         <ion-label position="stacked"> Tipo</ion-label>
         <ion-input required formControlName="tipo" type="text"></ion-input>
@@ -30,7 +30,7 @@
       </app-validation>
       <ion-item>
         <ion-label position="stacked"> Caracteristicas</ion-label>
-        <ion-input required formControlName="caracteristicas" type="text"></ion-input>
+        <ion-textarea required formControlName="caracteristicas" type="text"></ion-textarea>
       </ion-item>
       <app-validation [error]="registerForm.get('caracteristicas').errors" [variable]="registerForm.get('caracteristicas')" caracteristicas="Las caracteristicas ">
       </app-validation>

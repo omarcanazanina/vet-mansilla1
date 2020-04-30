@@ -9,7 +9,7 @@
 
 <ion-content class="ion-padding">
   <ion-list>
-    <form [formGroup]="registerForm" (ngSubmit)="registrate()">
+    <form [formGroup]="registerForm" (ngSubmit)="modificar()">
       <ion-item>
         <ion-label position="stacked"> Nombre</ion-label>
         <ion-input required formControlName="nombre" type="text"></ion-input>
@@ -21,7 +21,7 @@
         <ion-input required formControlName="animal" type="text"></ion-input>
       </ion-item>
       <app-validation [error]="registerForm.get('animal').errors" [variable]="registerForm.get('animal')"
-        animal="El animal "></app-validation>
+        nombre="El animal "></app-validation>
 
 
       <ion-button expand="block" type="submit" [disabled]="registerForm.invalid">

@@ -22,6 +22,8 @@ export class ListarDetallesPage implements OnInit {
   ngOnInit() {
     this.idruta = this.activate.snapshot.paramMap.get('idruta')
     this.id = this.activate.snapshot.paramMap.get('id')
+    console.log(this.idruta + " "+ this.id);
+    
     this.tipo = this.activate.snapshot.paramMap.get('tipo')
     // console.log(this.idruta,this.id +" "+ this.tipo);
     this.service.recuperadetalles(this.idruta, this.id).subscribe(res => {
@@ -34,7 +36,8 @@ export class ListarDetallesPage implements OnInit {
   }
 
   async crud(item) {
-    console.log(item);
+    item.idlinea = this.idruta,
+    item.idproducto = this.id
     
     const actionSheet = await this.actionSheetController.create({
       header: 'Opciones',

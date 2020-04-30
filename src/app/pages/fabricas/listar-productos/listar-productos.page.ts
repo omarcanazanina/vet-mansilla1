@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FabricasService } from 'src/app/servicios/fabricas.service';
+import { FabricasService,productos } from 'src/app/servicios/fabricas.service';
 import { ActionSheetController, NavController } from '@ionic/angular';
 import { UiService } from 'src/app/servicios/ui.service';
 
@@ -10,6 +10,7 @@ import { UiService } from 'src/app/servicios/ui.service';
   styleUrls: ['./listar-productos.page.scss'],
 })
 export class ListarProductosPage implements OnInit {
+  productos :productos = {}
   id: any
   nombre: any
   linea = {
@@ -30,11 +31,12 @@ export class ListarProductosPage implements OnInit {
     private navCtrl: NavController) { }
 
   ngOnInit() {
-    this.id = this.activatedRoute.snapshot.paramMap.get('id')
+    this.id = this.activatedRoute.snapshot.paramMap.get('id')    
     this.nombre = this.activatedRoute.snapshot.paramMap.get('nombre')
     this.service.recupera_animal_linea(this.id).subscribe(res => {
       this.linea = res[0]
       this.id_ruta = this.linea.id
+      //console.log(this.id_ruta);
       this.service.recuperaproductos(this.id_ruta).subscribe(res1 => {
         this.lista_productos = res1
         //console.log(this.lista_productos);
@@ -53,6 +55,12 @@ export class ListarProductosPage implements OnInit {
   }
 
   async crud(item) {
+    this.service.recupera_id_animal_linea(item.id).subscribe(res => {
+      this.productos = res[0]
+      item.id_ruta = this.linea.id
+      console.log(item.id_ruta);
+      
+    })
     const actionSheet = await this.actionSheetController.create({
       header: 'Opciones',
       buttons: [
@@ -70,26 +78,26 @@ export class ListarProductosPage implements OnInit {
             this.navCtrl.navigateForward(['tabs/fabricas/modificar-producto',item])
           }
         }, 
-       // {
-       //   text: item.estado?'Deshabilitar':'Habilitar',
-       //   role: 'destructive',
-       //   icon: item.estado?'trash':'power',
-       //  handler: () => {
-       //    console.log('Delete clicked');
-       //    this.uiService.presentLoading("Procesando...")
-       //    .then(load=>{
-       //      this.fabricas.modificarFabrica(item.id,{estado:!item.estado})
-       //      .then(()=>{
-       //        load.dismiss()
-       //      })
-       //      .catch(err=>{
-       //        load.dismiss()
-       //        console.log(err);
+        {
+          text: item.estado?'Deshabilitar':'Habilitar',
+          role: 'destructive',
+          icon: item.estado?'trash':'power',
+         handler: () => {
+           console.log('Delete clicked');
+           this.uiService.presentLoading("Procesando...")
+           .then(load=>{
+            this.service.modificarProducto(item.id,item.id_ruta,{ estado: !item.estado })
+             .then(()=>{
+               load.dismiss()
+             })
+             .catch(err=>{
+               load.dismiss()
+               console.log(err);
 //
-       //      })
-       //    })
-       //  }
-       // },
+             })
+           })
+         }
+        },
          {
           text: 'Cancel',
           icon: 'close',
