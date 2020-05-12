@@ -16,27 +16,6 @@ const routes: Routes = [
     loadChildren: () => import('./registrate/registrate.module').then( m => m.RegistratePageModule),canActivate:[NologinGuard]
   },
   {
-    path: 'prueba',
-    loadChildren: () => import('./prueba/prueba.module').then( m => m.PruebaPageModule)
-  },
-  {
-    path: 'agregar-usuario',
-    loadChildren: () => import('./agregar-usuario/agregar-usuario.module').then( m => m.AgregarUsuarioPageModule)
-  },
-  {
-    path: 'lineas/:id/:nombre',
-    loadChildren: () => import('./lineas/lineas.module').then( m => m.LineasPageModule)
-  },
-  {
-    path: 'index',
-    loadChildren: () => import('./pages/fabricas/index/index.module').then( m => m.IndexPageModule)
-  },
-  {
-    path: 'fabricas',
-    loadChildren: () => import('./pages/fabricas/fabricas.module').then( m => m.FabricasPageModule)
-  },
- 
-  {
     path: 'listar-lineas/:id/:nombre',
     loadChildren: () => import('./pages/lineas/listar-lineas/listar-lineas.module').then( m => m.ListarLineasPageModule)
   },
@@ -91,10 +70,6 @@ const routes: Routes = [
   {
     path: 'modificar-detalle',
     loadChildren: () => import('./pages/detalles/modificar-detalle/modificar-detalle.module').then( m => m.ModificarDetallePageModule)
-  },
-  {
-    path: 'ver-detalle',
-    loadChildren: () => import('./pages/detalles/ver-detalle/ver-detalle.module').then( m => m.VerDetallePageModule)
   },
 
 
