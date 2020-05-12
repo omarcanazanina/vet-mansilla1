@@ -35,10 +35,7 @@ const routes: Routes = [
     path: 'fabricas',
     loadChildren: () => import('./pages/fabricas/fabricas.module').then( m => m.FabricasPageModule)
   },
-  {
-    path: 'index',
-    loadChildren: () => import('./pages/lineas/index/index.module').then( m => m.IndexPageModule)
-  },
+ 
   {
     path: 'listar-lineas/:id/:nombre',
     loadChildren: () => import('./pages/lineas/listar-lineas/listar-lineas.module').then( m => m.ListarLineasPageModule)
@@ -62,6 +59,26 @@ const routes: Routes = [
   {
     path: 'index',
     loadChildren: () => import('./pages/fabricas1/index/index.module').then( m => m.IndexPageModule)
+  },
+  {
+    path: 'ver-fabrica',
+    loadChildren: () => import('./pages/fabricas1/ver-fabrica/ver-fabrica.module').then( m => m.VerFabricaPageModule)
+  },
+  {
+    path: 'modificar-fabrica',
+    loadChildren: () => import('./pages/fabricas1/modificar-fabrica/modificar-fabrica.module').then( m => m.ModificarFabricaPageModule)
+  },
+  {
+    path: 'ver-linea',
+    loadChildren: () => import('./pages/lineas/ver-linea/ver-linea.module').then( m => m.VerLineaPageModule)
+  },
+  {
+    path: 'modificar-linea',
+    loadChildren: () => import('./pages/lineas/modificar-linea/modificar-linea.module').then( m => m.ModificarLineaPageModule)
+  },
+  {
+    path: 'agregar-linea',
+    loadChildren: () => import('./pages/lineas/agregar-linea/agregar-linea.module').then( m => m.AgregarLineaPageModule)
   },
 
 

@@ -27,7 +27,6 @@ export class IndexPage implements OnInit {
 
 
   async ir() {
-
     const alert = await this.alertController.create({
       header: 'Crear fábrica',
       backdropDismiss: false,
@@ -68,8 +67,6 @@ export class IndexPage implements OnInit {
       ]
     });
     await alert.present();
-
-
   }
 
   listar_fabricas() {

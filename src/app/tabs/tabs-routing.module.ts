@@ -29,29 +29,36 @@ const routes: Routes = [
         ]
       },
       {
-        path: 'fabricas',
+        path: 'fabricas1',
         children: [
-         //{
-         //  path: 'index',
-         //  loadChildren: () => import('../pages/fabricas1/index/index.module').then( m => m.IndexPageModule)
-         //},
-          {
-            path: '',
-            loadChildren: () => import('../pages/fabricas/index/index.module').then(m => m.IndexPageModule)
-          },
+         {
+           path: '',
+           loadChildren: () => import('../pages/fabricas1/index/index.module').then( m => m.IndexPageModule)
+         },
+         {
+          path: 'ver-fabrica',
+          loadChildren: () => import('../pages/fabricas1/ver-fabrica/ver-fabrica.module').then( m => m.VerFabricaPageModule)
+        },
+        {
+          path: 'modificar-fabrica',
+          loadChildren: () => import('../pages/fabricas1/modificar-fabrica/modificar-fabrica.module').then( m => m.ModificarFabricaPageModule)
+        },
           {
             path: 'listar-lineas/:id/:nombre',
-            loadChildren: () => import('../pages/fabricas/listar-lineas/listar-lineas.module').then(m => m.ListarLineasPageModule)
-            //loadChildren: () => import('../pages/lineas/listar-lineas/listar-lineas.module').then(m => m.ListarLineasPageModule)
+            loadChildren: () => import('../pages/lineas/listar-lineas/listar-lineas.module').then(m => m.ListarLineasPageModule)
+          },
+          {
+            path: 'ver-linea',
+            loadChildren: () => import('../pages/lineas/ver-linea/ver-linea.module').then( m => m.VerLineaPageModule)
           },
           {
             path: 'listar-productos/:id/:nombre',
-            loadChildren: () => import('../pages/fabricas/listar-productos/listar-productos.module').then(m => m.ListarProductosPageModule)
+            loadChildren: () => import('../pages/productos/listar-productos/listar-productos.module').then(m => m.ListarProductosPageModule)
           },
           {
             path: 'agregar-producto/:id/:nombre',
-            loadChildren: () => import('../pages/fabricas/agregar-producto/agregar-producto.module').then(m => m.AgregarProductoPageModule)
-          },
+            loadChildren: () => import('../pages/productos/agregar-producto/agregar-producto.module').then(m => m.AgregarProductoPageModule)
+          },//
           {
             path: 'listar-detalles/:idruta/:id/:tipo',
             loadChildren: () => import('../pages/fabricas/listar-detalles/listar-detalles.module').then( m => m.ListarDetallesPageModule)
@@ -94,14 +101,16 @@ const routes: Routes = [
         ]
       },
       {
-        path: 'tab3',
+        path: 'fabricas1',
         children: [
-          {
-            path: '',
-            loadChildren: () =>
-              import('../tab3/tab3.module').then(m => m.Tab3PageModule)
-          },
-         
+         //{
+         //  path: 'index',
+         //  loadChildren: () => import('../pages/fabricas1/index/index.module').then(m => m.IndexPageModule)
+         //},
+         {
+          path: '',
+          loadChildren: () => import('../pages/fabricas1/index/index.module').then( m => m.IndexPageModule)
+        },
         ]
       },
       {

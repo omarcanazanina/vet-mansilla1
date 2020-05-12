@@ -1,9 +1,37 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>agregar-producto</ion-title>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Crear producto - {{nombre}} j</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  
+  <ion-item>
+    <ion-label position="floating" >Tipo</ion-label>
+    <ion-input [(ngModel)]= "tipo"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating" >Características</ion-label>
+    <ion-textarea [(ngModel)]= "caracteristicas"></ion-textarea>
+  </ion-item>
+  <ion-item>
+    <ion-label>Seleccione edad</ion-label>
+    <ion-select [(ngModel)]= "edad" value="cachorro" okText="Aceptar" cancelText="Cancelar">
+      <ion-select-option value="cachorro">Cachorro</ion-select-option>
+      <ion-select-option value="adulto">Adulto</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label>Seleccione Raza</ion-label>
+    <ion-select [(ngModel)]= "raza" value="pequeña" okText="Aceptar" cancelText="Cancelar">
+      <ion-select-option value="pequeña">Pequeña</ion-select-option>
+      <ion-select-option value="mediana">Mediana</ion-select-option>
+      <ion-select-option value="grande">Grande</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-button (click)="galeria()"> imagen </ion-button>
+  <ion-button expand="full" (click)="guardar()">Aceptar</ion-button>
 </ion-content>

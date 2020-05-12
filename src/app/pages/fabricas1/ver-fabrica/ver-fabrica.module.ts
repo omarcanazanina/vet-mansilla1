@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { IndexPageRoutingModule } from './index-routing.module';
+import { VerFabricaPageRoutingModule } from './ver-fabrica-routing.module';
 
-import { IndexPage } from './index.page';
+import { VerFabricaPage } from './ver-fabrica.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    IndexPageRoutingModule
+    VerFabricaPageRoutingModule
   ],
-  declarations: [IndexPage]
+  declarations: [VerFabricaPage]
 })
-export class IndexPageModule {}
+export class VerFabricaPageModule {}

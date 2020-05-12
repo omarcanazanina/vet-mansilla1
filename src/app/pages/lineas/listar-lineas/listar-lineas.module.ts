@@ -8,12 +8,18 @@ import { ListarLineasPageRoutingModule } from './listar-lineas-routing.module';
 
 import { ListarLineasPage } from './listar-lineas.page';
 
+import { AgregarLineaPage } from '../agregar-linea/agregar-linea.page';
+import { AgregarLineaPageModule } from '../agregar-linea/agregar-linea.module';
 @NgModule({
+  entryComponents:[
+  AgregarLineaPage
+],
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ListarLineasPageRoutingModule
+    ListarLineasPageRoutingModule,
+    AgregarLineaPageModule
   ],
   declarations: [ListarLineasPage]
 })
