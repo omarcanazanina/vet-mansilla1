@@ -58,15 +58,40 @@ const routes: Routes = [
           {
             path: 'agregar-producto/:id/:nombre',
             loadChildren: () => import('../pages/productos/agregar-producto/agregar-producto.module').then(m => m.AgregarProductoPageModule)
-          },//
+          },
+          {
+            path: 'ver-producto',
+            loadChildren: () => import('../pages/productos/ver-producto/ver-producto.module').then( m => m.VerProductoPageModule)
+          },
+          {
+            path: 'modificar-producto',
+            loadChildren: () => import('../pages/productos/modificar-producto/modificar-producto.module').then( m => m.ModificarProductoPageModule)
+          },
           {
             path: 'listar-detalles/:idruta/:id/:tipo',
-            loadChildren: () => import('../pages/fabricas/listar-detalles/listar-detalles.module').then( m => m.ListarDetallesPageModule)
+            loadChildren: () => import('../pages/detalles/listar-detalles/listar-detalles.module').then( m => m.ListarDetallesPageModule)
           },
           {
             path: 'agregar-detalle/:idruta/:idproducto/:tipo',
-            loadChildren: () => import('../pages/fabricas/agregar-detalle/agregar-detalle.module').then( m => m.AgregarDetallePageModule)
-          }, {
+            loadChildren: () => import('../pages/detalles/agregar-detalle/agregar-detalle.module').then( m => m.AgregarDetallePageModule)
+          },
+          {
+            path: 'modificar-detalle',
+            loadChildren: () => import('../pages/detalles/modificar-detalle/modificar-detalle.module').then( m => m.ModificarDetallePageModule)
+          },
+          {
+            path: 'ver-detalle',
+            loadChildren: () => import('../pages/detalles/ver-detalle/ver-detalle.module').then( m => m.VerDetallePageModule)
+          },//
+          //{
+          //  path: 'listar-detalles/:idruta/:id/:tipo',
+          //  loadChildren: () => import('../pages/fabricas/listar-detalles/listar-detalles.module').then( m => m.ListarDetallesPageModule)
+          //},
+         // {
+         //   path: 'agregar-detalle/:idruta/:idproducto/:tipo',
+         //   loadChildren: () => import('../pages/fabricas/agregar-detalle/agregar-detalle.module').then( m => m.AgregarDetallePageModule)
+         // }, 
+         {
             path: 'ver-fabrica',
             loadChildren: () => import('../pages/fabricas/ver-fabrica/ver-fabrica.module').then( m => m.VerFabricaPageModule)
           },
@@ -82,22 +107,22 @@ const routes: Routes = [
             path: 'modificar-linea',
             loadChildren: () => import('../pages/fabricas/modificar-linea/modificar-linea.module').then( m => m.ModificarLineaPageModule)
           },
-          {
-            path: 'ver-producto',
-            loadChildren: () => import('../pages/fabricas/ver-producto/ver-producto.module').then( m => m.VerProductoPageModule)
-          },
-          {
-            path: 'modificar-producto',
-            loadChildren: () => import('../pages/fabricas/modificar-producto/modificar-producto.module').then( m => m.ModificarProductoPageModule)
-          },
-          {
-            path: 'ver-detalle',
-            loadChildren: () => import('../pages/fabricas/ver-detalle/ver-detalle.module').then( m => m.VerDetallePageModule)
-          },
-          {
-            path: 'modificar-detalle',
-            loadChildren: () => import('../pages/fabricas/modificar-detalle/modificar-detalle.module').then( m => m.ModificarDetallePageModule)
-          }
+          //{
+          //  path: 'ver-producto',
+          //  loadChildren: () => import('../pages/fabricas/ver-producto/ver-producto.module').then( m => m.VerProductoPageModule)
+          //},
+          //{
+          //  path: 'modificar-producto',
+          //  loadChildren: () => import('../pages/fabricas/modificar-producto/modificar-producto.module').then( m => m.ModificarProductoPageModule)
+          //},
+          //{
+          //  path: 'ver-detalle',
+          //  loadChildren: () => import('../pages/fabricas/ver-detalle/ver-detalle.module').then( m => m.VerDetallePageModule)
+          //},
+          //{
+          //  path: 'modificar-detalle',
+          //  loadChildren: () => import('../pages/fabricas/modificar-detalle/modificar-detalle.module').then( m => m.ModificarDetallePageModule)
+          //}
         ]
       },
       {

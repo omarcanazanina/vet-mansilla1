@@ -80,6 +80,22 @@ const routes: Routes = [
     path: 'agregar-linea',
     loadChildren: () => import('./pages/lineas/agregar-linea/agregar-linea.module').then( m => m.AgregarLineaPageModule)
   },
+  {
+    path: 'ver-producto',
+    loadChildren: () => import('./pages/productos/ver-producto/ver-producto.module').then( m => m.VerProductoPageModule)
+  },
+  {
+    path: 'modificar-producto',
+    loadChildren: () => import('./pages/productos/modificar-producto/modificar-producto.module').then( m => m.ModificarProductoPageModule)
+  },
+  {
+    path: 'modificar-detalle',
+    loadChildren: () => import('./pages/detalles/modificar-detalle/modificar-detalle.module').then( m => m.ModificarDetallePageModule)
+  },
+  {
+    path: 'ver-detalle',
+    loadChildren: () => import('./pages/detalles/ver-detalle/ver-detalle.module').then( m => m.VerDetallePageModule)
+  },
 
 
 ];
