@@ -24,6 +24,7 @@ export class AgregarProductoPage implements OnInit {
     id: ""
   }
   id_ruta: string
+  imm='https://firebasestorage.googleapis.com/v0/b/aplicacion-bdcf5.appspot.com/o/user%2Fdefault.jpg?alt=media&token=773dd56e-f796-41a1-8a85-d40fe7a9693e'
   constructor(private activate: ActivatedRoute,
     private db: AngularFirestore,
     private service: FabricasService,
@@ -61,11 +62,11 @@ export class AgregarProductoPage implements OnInit {
       })
   }
   galeria() {
-    const ejemplo = 'prueba'
+    const ejemplogaleria = 'ejemplogaleria'
     this.service.takeGalley().then(res => {
       let load = this.service.loading()
-      this.service.uploadImgB64('user/' + ejemplo + 'galery.jpg', res).then(url => {
-        alert('se pudo')
+      this.service.uploadImgB64('user/' + ejemplogaleria + 'galery.jpg', res).then(url => {
+        alert('se pudo galeria')
         
         //this.urlfinal = url
         //this.au.reducirImagen(url).then( imgreducido =>{} )
@@ -74,6 +75,22 @@ export class AgregarProductoPage implements OnInit {
         load.then(loading => {
           loading.dismiss();
         })
+      }).catch(err => alert('error de upload' + err))
+    }).catch(err => alert(err))
+  }
+
+  camara() {
+    const ejemplocamara = 'ejemplocamara'
+    this.service.takecamera().then(res => {
+      let load = this.service.loading()
+      this.service.uploadImgB64('user/' + ejemplocamara + 'camara.jpg', res).then(url => {
+        alert('se pudo camara')
+        //this.urlfinal = url
+        //this.perfil=1
+        //this.imm = this.au.actualizarimg({ img: url }, this.usuario.uid)
+        //load.then(loading => {
+        //  loading.dismiss();
+        //})
       }).catch(err => alert('error de upload' + err))
     }).catch(err => alert(err))
   }
