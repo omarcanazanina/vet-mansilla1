@@ -4,6 +4,8 @@ import { AlertController, ActionSheetController, NavController } from '@ionic/an
 import { UiService } from 'src/app/servicios/ui.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { UsuarioService } from 'src/app/servicios/usuario.service';
 
 @Component({
   selector: 'app-index',
@@ -12,15 +14,33 @@ import { Router } from '@angular/router';
 })
 export class IndexPage implements OnInit {
   lista_fabricas: any
+  usu
+  control 
   constructor(private fabricas: FabricasService,
     private alertController: AlertController,
     private uiService: UiService,
     private db: AngularFirestore,
     private actionSheetController: ActionSheetController,
     private navCtrl: NavController,
-    private router:Router) {
+    private router: Router,
+    private auth: AngularFireAuth,
+    private usuarioService: UsuarioService) {
     this.listar_fabricas()
-   }
+
+    let user = this.auth.auth.currentUser
+
+    this.usuarioService.recuperaundato(user.uid).subscribe(res => {
+      this.usu = res
+      if (this.usu.email == 'adm@gmail.com') {
+        this.control = 0
+
+      } else {
+        this.control = 1
+        this.router.navigate(['/listar-pedidos'])
+      }
+    })
+
+  }
 
   ngOnInit() {
   
@@ -29,7 +49,7 @@ export class IndexPage implements OnInit {
   listar_fabricas() {
     this.fabricas.recuperafabricas().subscribe(datos => {
       this.lista_fabricas = datos
-    console.log(this.lista_fabricas);
+      console.log(this.lista_fabricas);
 
     })
   }
@@ -62,9 +82,9 @@ export class IndexPage implements OnInit {
                   .then(load => {
                     this.db.collection('fabrica').add({
                       nombre: dato.fabrica,
-                      estado:true
+                      estado: true
                     })
-                    
+
                     load.dismiss()
                     this.uiService.MessageToastSuccess("fabrica guardado correctamente")
                   })
@@ -84,34 +104,34 @@ export class IndexPage implements OnInit {
           text: 'Ver',
           icon: 'eye',
           handler: () => {
-            this.navCtrl.navigateForward(['tabs/fabricas1/ver-fabrica',item])
+            this.navCtrl.navigateForward(['tabs/fabricas1/ver-fabrica', item])
           }
         },
         {
           text: 'Modificar',
           icon: 'create',
           handler: () => {
-            this.navCtrl.navigateForward(['tabs/fabricas1/modificar-fabrica',item])
+            this.navCtrl.navigateForward(['tabs/fabricas1/modificar-fabrica', item])
           }
         }, {
-          text: item.estado?'Deshabilitar':'Habilitar',
+          text: item.estado ? 'Deshabilitar' : 'Habilitar',
           role: 'destructive',
-          icon: item.estado?'trash':'power',
-         handler: () => {
-           console.log('Delete clicked');
-           this.uiService.presentLoading("Procesando...")
-           .then(load=>{
-             this.fabricas.modificarFabrica(item.id,{estado:!item.estado})
-             .then(()=>{
-               load.dismiss()
-             })
-             .catch(err=>{
-               load.dismiss()
-               console.log(err);
+          icon: item.estado ? 'trash' : 'power',
+          handler: () => {
+            console.log('Delete clicked');
+            this.uiService.presentLoading("Procesando...")
+              .then(load => {
+                this.fabricas.modificarFabrica(item.id, { estado: !item.estado })
+                  .then(() => {
+                    load.dismiss()
+                  })
+                  .catch(err => {
+                    load.dismiss()
+                    console.log(err);
 
-             })
-           })
-         }
+                  })
+              })
+          }
         }, {
           text: 'Cancel',
           icon: 'close',
@@ -127,8 +147,8 @@ export class IndexPage implements OnInit {
 
   ir_linea(item) {
     this.router.navigate(['/tabs/fabricas1/listar-lineas', item.id, item.nombre])
-   // this.router.navigate(['/tabs/lineas/listar-lineas', item.id, item.nombre])
-}
+    // this.router.navigate(['/tabs/lineas/listar-lineas', item.id, item.nombre])
+  }
 
 
 }

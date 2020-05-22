@@ -6,7 +6,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content >
+<ion-content *ngIf="control == 0">
   <ion-item *ngFor="let item of lista_fabricas" >
     <ion-icon slot="start" [name]="!item.estado?'close':'checkmark'"></ion-icon>
     <ion-icon slot="end" name="ellipsis-vertical" (click)="crud(item)"></ion-icon>
@@ -17,4 +17,7 @@
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
+</ion-content>
+<ion-content *ngIf="control == 1">
+
 </ion-content>

@@ -3,6 +3,8 @@ import { NavController, ActionSheetController } from '@ionic/angular';
 import { UsuarioService, Usuario } from 'src/app/servicios/usuario.service';
 import { Subscription, forkJoin } from 'rxjs';
 import { UiService } from 'src/app/servicios/ui.service';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-index',
@@ -14,14 +16,34 @@ export class IndexPage implements OnInit {
   repartidores: Usuario[] 
   venSubs: Subscription
   repSubs: Subscription
+  usu
+  control 
   constructor(
     private navCtrl: NavController,
     private usuarioService: UsuarioService,
     private uiService: UiService,
-    private actionSheetController: ActionSheetController
-  ) { }
+    private actionSheetController: ActionSheetController,
+    private auth: AngularFireAuth,
+    private route:Router
+  ) { 
+    let user = this.auth.auth.currentUser
+  
+    this.usuarioService.recuperaundato(user.uid).subscribe(res =>{
+     this.usu= res
+     
+     if(this.usu.email =='adm@gmail.com'){
+     this.control = 0
+     }else{
+      this.route.navigate(['/listar-pedidos'])
+      this.control=1
+     }
+    })
+  }
 
   ngOnInit() {
+  
+    
+    
     //let valores=forkJoin({
     //  vendedor:this.usuarioService.listarEmpleados("vendedor"),
     //  repartidor:this.usuarioService.listarEmpleados("repartidor")
@@ -35,12 +57,12 @@ export class IndexPage implements OnInit {
     
     this.venSubs = this.usuarioService.listarEmpleados("vendedor")
       .subscribe(res => {
-        console.log(res);
+        //console.log(res);
         this.vendedores = res
       })
     this.repSubs = this.usuarioService.listarEmpleados("repartidor")
       .subscribe(res => {
-        console.log(res);
+        //console.log(res);
         this.repartidores = res
       })
   }

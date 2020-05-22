@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { TabsPage } from './tabs.page';
 
+
 const routes: Routes = [
   {
     path: 'tabs',
@@ -86,13 +87,33 @@ const routes: Routes = [
         ]
       },
       {
-        path: 'fabricas1',
+        path: 'pedidos',
         children: [
-       
-         {
-          path: '',
-          loadChildren: () => import('../pages/fabricas1/index/index.module').then( m => m.IndexPageModule)
-        },
+          {
+            path: '',
+            loadChildren: () => import('../pages/pedidos/listar-pedidos/listar-pedidos.module').then( m => m.ListarPedidosPageModule)
+          },
+          {
+            path: 'ver-pedido',
+            loadChildren: () => import('../pages/pedidos/ver-pedido/ver-pedido.module').then( m => m.VerPedidoPageModule)
+          },
+          {
+            path: 'asignar-repartidor',
+            loadChildren: () => import('../pages/pedidos/asignar-repartidor/asignar-repartidor.module').then( m => m.AsignarRepartidorPageModule)
+          },
+       // {
+       //  path: '',
+       //  loadChildren: () => import('../pages/fabricas1/index/index.module').then( m => m.IndexPageModule)
+       //},
+        ]
+      },
+      {
+        path: 'perfil',
+        children: [
+          {
+            path: '',
+            loadChildren: () => import('../tab4/tab4.module').then( m => m.Tab4PageModule)
+          },
         ]
       },
       {

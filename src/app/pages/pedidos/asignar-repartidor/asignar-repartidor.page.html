@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Repartidores</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <ion-list>
+    <ion-radio-group >
+    <ion-item *ngFor="let item of repartidores " >
+        <ion-label>{{item.nombre}}</ion-label>
+        <ion-radio slot="end"  (click)="check(item)" ></ion-radio>
+    </ion-item>
+  </ion-radio-group>
+  
+  </ion-list>
+  <ion-button expand="full" (click)="asignar()" >
+    Asignar
+  </ion-button>
+
+</ion-content>

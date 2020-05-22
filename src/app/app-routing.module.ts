@@ -71,6 +71,34 @@ const routes: Routes = [
     path: 'modificar-detalle',
     loadChildren: () => import('./pages/detalles/modificar-detalle/modificar-detalle.module').then( m => m.ModificarDetallePageModule)
   },
+  {
+    path: 'listar-pedidos',
+    loadChildren: () => import('./pages/pedidos/listar-pedidos/listar-pedidos.module').then( m => m.ListarPedidosPageModule)
+  },
+  {
+    path: 'ver-pedido',
+    loadChildren: () => import('./pages/pedidos/ver-pedido/ver-pedido.module').then( m => m.VerPedidoPageModule)
+  },
+  {
+    path: 'asignar-repartidor',
+    loadChildren: () => import('./pages/pedidos/asignar-repartidor/asignar-repartidor.module').then( m => m.AsignarRepartidorPageModule)
+  },
+  {
+    path: 'tab4',
+    loadChildren: () => import('./tab4/tab4.module').then( m => m.Tab4PageModule)
+  },
+  {
+    path: 'detalle-pedido',
+    loadChildren: () => import('./pages/repartidor/detalle-pedido/detalle-pedido.module').then( m => m.DetallePedidoPageModule)
+  },
+  {
+    path: 'historial',
+    loadChildren: () => import('./pages/repartidor/historial/historial.module').then( m => m.HistorialPageModule)
+  },
+  {
+    path: 'pages',
+    loadChildren: () => import('./pages/pages.module').then( m => m.PagesPageModule)
+  },
 
 
 ];

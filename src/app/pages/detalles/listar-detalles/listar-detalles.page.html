@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>1Detalle {{tipo}}</ion-title>
+    <ion-title>Detalle {{tipo}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -12,9 +12,9 @@
 
   <ion-item *ngFor="let detalle of lista_detalles "  (click)= "crud(detalle)">
     <ion-label>
-      <h2>Cantidad:{{detalle.cantidad}}</h2>
-      <p>Peso:{{detalle.peso}}</p>
-      <p>Precio:{{detalle.precio}}</p>
+      <h2>Cantidad:{{detalle.cantidad}} Unid.</h2>
+      <p>Peso:{{detalle.peso}} Kg.</p>
+      <p>Precio:{{detalle.precio}} Bs.</p>
     </ion-label>
     <ion-icon slot="end" name="ellipsis-vertical" ></ion-icon>
   </ion-item>
