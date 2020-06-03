@@ -4,13 +4,15 @@ import {  DomSanitizer } from '@angular/platform-browser';
 import { storage } from 'firebase';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { finalize } from 'rxjs/operators';
+import { AngularFirestore } from '@angular/fire/firestore';
 @Injectable({
   providedIn: 'root'
 })
 export class ImagenesService {
 
   constructor(private sanitizer: DomSanitizer,
-    private afStorage:AngularFireStorage
+	private afStorage:AngularFireStorage,
+	private fire: AngularFirestore,
     ) {  }
 
   //seleccionar imagen  base64  con capacitor
@@ -123,4 +125,9 @@ export class ImagenesService {
 		var bb = new Blob([ab], { type: 'image/jpeg', endings: "native" });
 		return bb;
 	}
+
+	actualizarimg(image,idusu, id) {
+		return this.fire.collection('/animales-linea/'+idusu+'/productos').doc(id).set(image, { merge: true })
+	  }
+
 }

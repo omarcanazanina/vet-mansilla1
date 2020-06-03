@@ -37,7 +37,30 @@ export class PedidosService {
       })
     }))
   }
+  //recupera los pedidos ENVIANDO
+  recupera_Pedidos_Enviando(estado = 'ENVIANDO'): Observable<any> {
+    var query = ref => ref.where('estado', '==', estado)
+    return this.db.collection('/pedidos', query).snapshotChanges().pipe(map(changes => {
+      return changes.map(a => {
+        const data = a.payload.doc.data() as Pedido;
+        data.id = a.payload.doc.id;
+        return data;
+      })
+    }))
+  }
 
+    //recupera los pedidos ENVIANDO
+    recupera_Pedidos_Pedido(estado = 'PEDIDO'): Observable<any> {
+      var query = ref => ref.where('estado', '==', estado)
+      return this.db.collection('/pedidos', query).snapshotChanges().pipe(map(changes => {
+        return changes.map(a => {
+          const data = a.payload.doc.data() as Pedido;
+          data.id = a.payload.doc.id;
+          return data;
+        })
+      }))
+    }
+  
   //recupera los pedidos entregados
   recupera_Pedidos(estado = 'ENTREGADO'): Observable<any> {
     var query = ref => ref.where('estado', '==', estado)
@@ -107,5 +130,18 @@ export class PedidosService {
   //recupera un cliente
   recupera_cliente(cliente_id: string): Observable<any> {
     return this.db.collection('clientes').doc(cliente_id).valueChanges()
+  }
+  //ordenar
+  ordenarjson(data, key, orden) {
+    return data.sort(function (a, b) {
+      var x = a[key],
+        y = b[key];
+      if (orden === 'asc') {
+        return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+      }
+      if (orden === 'desc') {
+        return ((x > y) ? -1 : ((x < y) ? 1 : 0));
+      }
+    });
   }
 }

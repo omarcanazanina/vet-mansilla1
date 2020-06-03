@@ -38,6 +38,9 @@ export class ListarProductosPage implements OnInit {
       //console.log(this.id_ruta);
       this.service.recuperaproductos(this.id_ruta).subscribe(res1 => {
         this.lista_productos = res1
+       // this.img = this.lista_productos.image
+        console.log(this.lista_productos);
+        
         //console.log(this.lista_productos);
        // console.log(this.id_ruta);
         

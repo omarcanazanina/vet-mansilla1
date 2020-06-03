@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>Productos - {{nombre}} j</ion-title>
+    <ion-title>Productos - {{nombre}} aa</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -14,7 +14,7 @@
 
     <ion-icon slot="start" [name]="!producto.estado?'close':'checkmark'"></ion-icon>
     <ion-thumbnail slot="start">
-      <img src="./thumbnail.svg">
+      <img [src]='producto.image'>
     </ion-thumbnail>
     <ion-label  (click)= "listar_detalles(producto)">
       <h2>{{producto.tipo}}</h2>

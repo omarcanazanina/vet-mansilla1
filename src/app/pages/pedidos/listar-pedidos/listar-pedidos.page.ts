@@ -19,7 +19,11 @@ export class ListarPedidosPage implements OnInit {
   //  estado:'',
   //  fecha:''
   //}
-  pedidos
+  //listas
+  Enviando
+  Pedido
+  nuevo: any = []
+  ordenado: any = []
   usu
   control = 0
   asignados:any=[]
@@ -59,9 +63,20 @@ export class ListarPedidosPage implements OnInit {
   }
 
   ngOnInit() {
-    this.Pedidos_Service.recuperapedidos().subscribe(res => {
-      this.pedidos = res
-      console.log(this.pedidos);
+    //this.Pedidos_Service.recuperapedidos().subscribe(res => {
+    //  this.pedidos = res
+    //})
+    this.Pedidos_Service.recupera_Pedidos_Pedido().subscribe(datos => {
+      this.Pedido = datos
+      console.log(this.Pedido);
+      this.Pedidos_Service.recupera_Pedidos_Enviando().subscribe(datos => {
+        this.Enviando = datos
+        console.log(this.Enviando);
+        this.nuevo = [].concat(this.Pedido, this.Enviando);
+        this.ordenado = this.Pedidos_Service.ordenarjson(this.nuevo, 'fecha', 'desc')
+        console.log(this.ordenado);
+        
+      })
     })
   
   }

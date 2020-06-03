@@ -7,14 +7,14 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="ion-padding">
   <div class="profile" >
-    <ion-fab>
+    <ion-fab (click)="funciones()">
       <ion-fab-button size="small" >
-        <ion-icon name="camera"></ion-icon>
+        <ion-icon name="camera" ></ion-icon>
       </ion-fab-button>
     </ion-fab>
-    <img (click)="modal()" [src]='imm'>
+    <img (click)="modal()" [src]='urlfinal'>
   </div>
 
   <ion-item>
@@ -40,7 +40,5 @@
       <ion-select-option value="grande">Grande</ion-select-option>
     </ion-select>
   </ion-item>
-  <ion-button (click)="galeria()"> galeria </ion-button>
-  <ion-button (click)="camara()"> camara </ion-button>
   <ion-button expand="full" (click)="guardar()">Aceptar</ion-button>
 </ion-content>
