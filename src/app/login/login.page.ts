@@ -31,12 +31,21 @@ export class LoginPage implements OnInit {
   }
 
   login() {
+    
+    
     this.loginForm.value
+    console.log('este es el email'+this.loginForm.get('email').value);
     this.metodos.login(this.loginForm.get('email').value, this.loginForm.get('password').value).then(res => {
-      this.router.navigate(['/tabs/usuarios'])
+       if(this.loginForm.get('email').value == 'adm@gmail.com' || this.loginForm.get('email').value == 'Adm@gmail.com' ){
+         //alert('es el adm')
+         this.router.navigate(['/tabs/usuarios'])
+       }else{
+         //alert('es el empleado')
+         this.router.navigate(['/tabs-emp/pedidos'])
+       }
     }).catch(err => alert('datos incorrectos'))
   }
-
+  
   registro() {
     this.router.navigate(['/registrate'])
   }

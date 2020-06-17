@@ -46,8 +46,6 @@ export class ModificarLineaPage implements OnInit {
       .then(load => {
         this.lineas.modificarLinea(this.idruta, this.registerForm.value).then(() => {
           this.fabricaService.modificarLinea(this.id, this.idfabrica, this.registerForm.value).then(() => {
-
-
             load.dismiss()
             this.uiService.MessageToastSuccess("Linea Modificada correctamente")
             this.navCtrl.back()

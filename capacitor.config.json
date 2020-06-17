@@ -1,6 +1,6 @@
 {
-  "appId": "com.example.myapp",
-  "appName": "veterninaria-admin",
+  "appId": "com.vet.mansilla",
+  "appName": "veterinaria-adm",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "www",

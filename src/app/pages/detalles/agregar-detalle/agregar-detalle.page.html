@@ -7,8 +7,40 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-item>
+<ion-content class="ion-padding">
+
+ 
+  <ion-list>
+    <form [formGroup]="registerForm" (ngSubmit)="aceptar()">
+      <ion-item>
+        <ion-label position="stacked"> Peso Kg.</ion-label>
+        <ion-input required formControlName="peso" type="text"></ion-input>
+      </ion-item>
+      <app-validation [error]="registerForm.get('peso').errors" [variable]="registerForm.get('peso')" nombre="El peso ">
+      </app-validation>
+      <ion-item>
+        <ion-label position="stacked"> Precio Bs.</ion-label>
+        <ion-input required formControlName="precio" type="text"></ion-input>
+      </ion-item>
+      <app-validation [error]="registerForm.get('precio').errors" [variable]="registerForm.get('precio')" nombre="El precio ">
+      </app-validation>
+      <ion-item>
+        <ion-label position="stacked"> Cantidad Unid.</ion-label>
+        <ion-input required formControlName="cantidad" type="text"></ion-input>
+      </ion-item>
+      <app-validation [error]="registerForm.get('cantidad').errors" [variable]="registerForm.get('cantidad')" nombre="La cantidad ">
+      </app-validation>
+     
+      <ion-button expand="block" type="submit" [disabled]="registerForm.invalid">
+        Aceptar
+      </ion-button>
+    </form>
+  </ion-list>
+
+
+</ion-content>
+  <!-- 
+ <ion-item>
     <ion-label position="floating" >Peso Kg.</ion-label>
     <ion-input type="number" [(ngModel)]= "peso"></ion-input>
   </ion-item>
@@ -20,7 +52,6 @@
     <ion-label position="floating" >Cantidad Unid.</ion-label>
     <ion-input type="number" [(ngModel)]= "cantidad"></ion-input>
   </ion-item>
-
   <ion-button expand="full" (click)="guardar()">Aceptar</ion-button>
   
-</ion-content>
+-->

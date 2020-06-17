@@ -99,6 +99,22 @@ const routes: Routes = [
     path: 'pages',
     loadChildren: () => import('./pages/pages.module').then( m => m.PagesPageModule)
   },
+  {
+    path: 'tabs-emp',
+    loadChildren: () => import('./tabs-emp/tabs-emp.module').then( m => m.TabsEmpPageModule)
+  },
+  {
+    path: 'listar-pedidos-emp',
+    loadChildren: () => import('./pedidos-emp/listar-pedidos-emp/listar-pedidos-emp.module').then( m => m.ListarPedidosEmpPageModule)
+  },
+  {
+    path: 'detalle-pedido-emp',
+    loadChildren: () => import('./pedidos-emp/detalle-pedido-emp/detalle-pedido-emp.module').then( m => m.DetallePedidoEmpPageModule)
+  },
+  {
+    path: 'historial-emp',
+    loadChildren: () => import('./pedidos-emp/historial-emp/historial-emp.module').then( m => m.HistorialEmpPageModule)
+  },
 
 
 ];

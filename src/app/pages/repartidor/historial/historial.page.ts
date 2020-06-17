@@ -11,16 +11,14 @@ moment.locale('es')
   styleUrls: ['./historial.page.scss'],
 })
 export class HistorialPage implements OnInit {
-pedidos
-usu
+pedidos:any=[]
+usu:any=[]
 control
-historial
+historial:any=[]
   constructor(private Pedidos_Service: PedidosService,
     private auth: AngularFireAuth,
     private router:Router,
-    
     private usuarioService: UsuarioService,) { 
-   
     }
 
   ngOnInit() {

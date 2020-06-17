@@ -31,12 +31,12 @@ export class IndexPage implements OnInit {
     this.usuarioService.recuperaundato(user.uid).subscribe(res =>{
      this.usu= res
      
-     if(this.usu.email =='adm@gmail.com'){
-     this.control = 0
-     }else{
-      this.route.navigate(['/listar-pedidos'])
-      this.control=1
-     }
+    // if(this.usu.email =='adm@gmail.com'){
+    // this.control = 0
+    // }else{
+    //  this.route.navigate(['/listar-pedidos'])
+    //  this.control=1
+    // }
     })
   }
 

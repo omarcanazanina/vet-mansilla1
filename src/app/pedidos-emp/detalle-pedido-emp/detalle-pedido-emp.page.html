@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Detalle pedido</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-item >
+    <ion-label >
+      <div *ngIf="estado == 'ENVIANDO'">
+        <h2 style="color:green;">{{pedido.estado}}</h2>
+      </div>
+      <div *ngIf="estado == 'ENTREGADO'">
+        <h2 style="color:red;">{{pedido.estado}}</h2>
+      </div>
+      <h5>Nombre: {{pedido.nombre}}</h5>
+     <p>Celular:<a href="https://wa.me/591{{cliente.telefono}}"> {{cliente.telefono}}</a></p> 
+      <p>{{convertirFecha(pedido.fecha)}}</p>
+    </ion-label>
+  
+  </ion-item>
+  <div *ngFor=" let pedido of detalle">
+    <h1>{{pedido.producto.nombre}}</h1>
+    <p>{{pedido.producto.tipo}}</p>
+    <p>Raza:{{pedido.producto.raza}}</p>
+    <p>Edad:{{pedido.producto.edad}}</p>
+
+    <ion-item *ngFor="let det of pedido.detalle">
+      <ion-label>
+      <img class="icon" src="assets/icon/perfil.jpg" alt="">
+      <ion-grid>
+        <ion-row>
+          <ion-col><b><p>{{det.cant}} Unid.</p></b> </ion-col>
+          <ion-col><b><p>{{det.peso}} Kg.</p></b> </ion-col>
+          <ion-col><b><p>{{det.precio}} Bs.</p></b> </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col><b><p></p></b> </ion-col>
+          <ion-col><b><p></p></b> </ion-col>
+          <ion-col><b><p>total:{{ det.cant * det.precio}} Bs.</p></b> </ion-col>
+        </ion-row>
+      </ion-grid>
+      </ion-label>
+    </ion-item>   
+  </div>
+  
+</ion-content>
+<ion-footer *ngIf="estado == 'ENVIANDO'" >
+  <ion-button expand="full" (click)="entregar()">Marcar como entregado</ion-button>
+</ion-footer>
+<ion-footer *ngIf="estado == 'ENTREGADO'" >
+</ion-footer>
+

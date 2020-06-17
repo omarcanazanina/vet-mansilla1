@@ -8,6 +8,34 @@
 </ion-header>
 
 <ion-content class="ion-padding" >
+
+
+<ion-list>
+  <form [formGroup]="registerForm" (ngSubmit)="aceptar()">
+    <ion-item>
+      <ion-label position="stacked"> Nombre linea</ion-label>
+      <ion-input required formControlName="nombre" type="text"></ion-input>
+    </ion-item>
+    <app-validation [error]="registerForm.get('nombre').errors" [variable]="registerForm.get('nombre')"
+    nombre="El nombre "></app-validation>
+    <ion-item>
+      <ion-label>Animal</ion-label>
+      <ion-select ok-text="Aceptar" cancel-text="Cancelar" formControlName="animal" placeholder="Seleccione">
+        <ion-select-option value="gato">Gato</ion-select-option>
+        <ion-select-option value="perro">Perro</ion-select-option>
+        <ion-select-option value="hamster">Hamster</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <app-validation [error]="registerForm.get('animal').errors" [variable]="registerForm.get('animal')"
+    nombre="El animal "></app-validation>
+    <ion-button expand="block" type="submit" [disabled]="registerForm.invalid">
+      Registrar
+    </ion-button>
+  </form>
+</ion-list>
+
+</ion-content>
+  <!-- 
 <ion-item>
   <ion-label position="floating" >Nombre linea</ion-label>
   <ion-input [(ngModel)]= "linea"></ion-input>
@@ -18,17 +46,14 @@
     <ion-list-header>
       <ion-label>Animal</ion-label>
     </ion-list-header>
-
     <ion-item>
       <ion-label>Gato</ion-label>
       <ion-radio slot="start" value="gato"></ion-radio>
     </ion-item>
-
     <ion-item>
       <ion-label>Perro</ion-label>
       <ion-radio slot="start" value="perro"></ion-radio>
     </ion-item>
-
     <ion-item>
       <ion-label>Hamster</ion-label>
       <ion-radio slot="start" value="hamster"></ion-radio>
@@ -39,4 +64,5 @@
 <ion-button expand="full" (click)="aceptar(linea)">
 Aceptar
 </ion-button>
-</ion-content>
+
+  -->

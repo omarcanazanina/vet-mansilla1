@@ -25,7 +25,6 @@ export class ListarPedidosPage implements OnInit {
   nuevo: any = []
   ordenado: any = []
   usu
-  control = 0
   asignados:any=[]
   constructor(private Pedidos_Service: PedidosService,
     private actionSheetController: ActionSheetController,
@@ -39,15 +38,9 @@ export class ListarPedidosPage implements OnInit {
 
     this.usuarioService.recuperaundato(user.uid).subscribe(res => {
       this.usu = res
-      if (this.usu.email == 'adm@gmail.com') {
-        this.control = 0
-
-      } else {
-        this.control = 1
-        this.router.navigate(['/listar-pedidos'])
-      }
       this.Pedidos_Service.recupera_asignados(user.uid).subscribe(datos =>{
         this.asignados = datos
+        console.log(this.asignados);
         
        // for (let i = 0; i < this.asignados.length; i++) {
        //   const element = this.asignados[i];

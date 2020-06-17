@@ -8,14 +8,45 @@
 </ion-header>
 
 <ion-content class="ion-padding">
+  <div class="profile" >
+    <ion-fab (click)="funciones()">
+     <ion-fab-button size="small">
+        <ion-icon name="camera"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+    <img  [src]='urlfinal' >
+  </div> 
   <ion-list>
     <form [formGroup]="registerForm" (ngSubmit)="modificar()">
+      <!-- 
+      <ion-input required formControlName="image" type="text"></ion-input>
+      -->
       <ion-item>
         <ion-label position="stacked"> Tipo</ion-label>
         <ion-input required formControlName="tipo" type="text"></ion-input>
       </ion-item>
       <app-validation [error]="registerForm.get('tipo').errors" [variable]="registerForm.get('tipo')" tipo="El tipo ">
       </app-validation>
+      <ion-item>
+        <ion-label>Edad</ion-label>
+        <ion-select ok-text="Aceptar" cancel-text="Cancelar" formControlName="edad" placeholder="Seleccione">
+          <ion-select-option value="cachorro">Cachorro</ion-select-option>
+          <ion-select-option value="adulto">Adulto</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <app-validation [error]="registerForm.get('edad').errors" [variable]="registerForm.get('edad')" nombre="La edad ">
+      </app-validation>
+      <ion-item>
+        <ion-label>Raza</ion-label>
+        <ion-select ok-text="Aceptar" cancel-text="Cancelar" formControlName="raza" placeholder="Seleccione">
+          <ion-select-option value="pequeña">Pequeña</ion-select-option>
+          <ion-select-option value="mediana">Mediana</ion-select-option>
+          <ion-select-option value="grande">Grande</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <app-validation [error]="registerForm.get('raza').errors" [variable]="registerForm.get('raza')" nombre="La raza ">
+      </app-validation>
+      <!-- 
       <ion-item>
         <ion-label position="stacked"> Raza</ion-label>
         <ion-input required formControlName="raza" type="text"></ion-input>
@@ -28,13 +59,13 @@
       </ion-item>
       <app-validation [error]="registerForm.get('edad').errors" [variable]="registerForm.get('edad')" edad="La edad ">
       </app-validation>
+      -->
       <ion-item>
         <ion-label position="stacked"> Caracteristicas</ion-label>
         <ion-textarea required formControlName="caracteristicas" type="text"></ion-textarea>
       </ion-item>
       <app-validation [error]="registerForm.get('caracteristicas').errors" [variable]="registerForm.get('caracteristicas')" caracteristicas="Las caracteristicas ">
       </app-validation>
-
 
       <ion-button expand="block" type="submit" [disabled]="registerForm.invalid">
         Modificar

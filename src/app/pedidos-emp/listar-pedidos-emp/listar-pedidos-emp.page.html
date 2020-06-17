@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>
+      Pedidos
+    </ion-title>
+    <ion-icon slot="end" name="alarm" class="icono" (click)="historial()"></ion-icon>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <h5> usuario: {{usu.nombre}}</h5>
+
+  <ion-item *ngFor="let pedidos of asignados " >
+    <ion-label (click)="detalle(pedidos)">
+      <h2>{{pedidos.cliente.nombre}}</h2>
+      <p>{{convertirFecha(pedidos.fecha)}}</p>
+    </ion-label>
+  </ion-item>
+</ion-content>
+<!-- 
+<ion-footer *ngIf="control == 1">
+  <ion-button (click)="salir()"> cerrar sesion</ion-button>
+</ion-footer>
+-->

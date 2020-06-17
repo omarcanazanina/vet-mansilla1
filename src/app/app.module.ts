@@ -15,12 +15,15 @@ import {AngularFirestore} from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
 
 import { Camera } from '@ionic-native/camera/ngx';
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,
   AngularFireModule.initializeApp(firebaseConfig),
-  AngularFireAuthModule],
+  AngularFireAuthModule,
+
+  HttpClientModule],
   providers: [
     StatusBar,
     SplashScreen,

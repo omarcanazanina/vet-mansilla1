@@ -16,12 +16,26 @@
       </ion-item>
       <app-validation [error]="registerForm.get('nombre').errors" [variable]="registerForm.get('nombre')"
         nombre="El nombre "></app-validation>
-      <ion-item>
+        <ion-item>
+        <ion-label>Animal</ion-label>
+        <ion-select ok-text="Aceptar" cancel-text="Cancelar" formControlName="animal" placeholder="Seleccione">
+          <ion-select-option value="gato">Gato</ion-select-option>
+          <ion-select-option value="perro">Perro</ion-select-option>
+          <ion-select-option value="hamster">Hamster</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <app-validation [error]="registerForm.get('animal').errors" [variable]="registerForm.get('animal')"
+      nombre="El Animal"></app-validation>
+
+<!-- 
+<ion-item>
         <ion-label position="stacked"> Animal</ion-label>
         <ion-input required formControlName="animal" type="text"></ion-input>
       </ion-item>
       <app-validation [error]="registerForm.get('animal').errors" [variable]="registerForm.get('animal')"
         nombre="El animal "></app-validation>
+-->
+      
       <ion-button expand="block" type="submit" [disabled]="registerForm.invalid">
         Modificar
       </ion-button>

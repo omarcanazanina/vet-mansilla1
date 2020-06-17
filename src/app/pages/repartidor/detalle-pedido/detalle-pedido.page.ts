@@ -18,14 +18,13 @@ export class DetallePedidoPage implements OnInit {
   detalle: any = []
   estado
   total = 0
-  usu
-  control
+  usu:any=[]
+  //control
   constructor(private route: ActivatedRoute,
     private Pedidos_Service: PedidosService,
     private uiService: UiService,
     private router:Router,
     private auth: AngularFireAuth,
-    
     private usuarioService: UsuarioService,) {
     this.pedido = route.snapshot.params
     this.estado= this.pedido.estado
@@ -42,15 +41,15 @@ export class DetallePedidoPage implements OnInit {
       this.usuarioService.recuperaundato(user.uid).subscribe(res =>{
        this.usu= res
        
-       if(this.usu.email =='adm@gmail.com' && this.estado == 'ENVIANDO'){
-       this.control = 0
-       console.log(this.control);
-       
-       }else{
-         if(this.usu.email !='adm@gmail.com' && this.estado == 'ENVIANDO'){
-          this.control =1
-         }
-       }
+      // if(this.usu.email =='adm@gmail.com' && this.estado == 'ENVIANDO'){
+      // this.control = 0
+      // console.log(this.control);
+      // 
+      // }else{
+      //   if(this.usu.email !='adm@gmail.com' && this.estado == 'ENVIANDO'){
+      //    this.control =1
+      //   }
+      // }
       })
      // console.log(this.detalle);
       //this.total=0

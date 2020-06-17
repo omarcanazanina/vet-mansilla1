@@ -53,6 +53,10 @@ const routes: Routes = [
             loadChildren: () => import('../pages/lineas/ver-linea/ver-linea.module').then( m => m.VerLineaPageModule)
           },
           {
+            path: 'modificar-linea',
+            loadChildren: () => import('../pages/lineas/modificar-linea/modificar-linea.module').then( m => m.ModificarLineaPageModule)
+          },
+          {
             path: 'listar-productos/:id/:nombre',
             loadChildren: () => import('../pages/productos/listar-productos/listar-productos.module').then(m => m.ListarProductosPageModule)
           },

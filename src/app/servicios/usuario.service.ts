@@ -43,6 +43,9 @@ export class UsuarioService {
       this.route.navigate(['/login']);
     });
   }
+  modificarUsuario(data){  
+    return this.db.collection('users').doc(this.metodoService.getId()).set(data,{ merge: true })
+  }
 
 //  //para recuperar el logueado
 //  recuperaid(){

@@ -1,73 +1,73 @@
 import { Injectable } from '@angular/core';
 import { Plugins, CameraResultType, CameraSource } from '@capacitor/core';
-import {  DomSanitizer } from '@angular/platform-browser';
+import { DomSanitizer } from '@angular/platform-browser';
 import { storage } from 'firebase';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { finalize } from 'rxjs/operators';
 import { AngularFirestore } from '@angular/fire/firestore';
 @Injectable({
-  providedIn: 'root'
+	providedIn: 'root'
 })
 export class ImagenesService {
 
-  constructor(private sanitizer: DomSanitizer,
-	private afStorage:AngularFireStorage,
-	private fire: AngularFirestore,
-    ) {  }
+	constructor(private sanitizer: DomSanitizer,
+		private afStorage: AngularFireStorage,
+		private fire: AngularFirestore,
+	) { }
 
-  //seleccionar imagen  base64  con capacitor
-  async takePicture() {
-    const image = await Plugins.Camera.getPhoto({
-      quality: 100,
-      allowEditing: false,
-      resultType: CameraResultType.Base64,
-      source: CameraSource.Photos
-    });
-    console.log(image);
-    
-    //return  this.sanitizer.bypassSecurityTrustResourceUrl(image && (image.dataUrl));
-    return "data:image/jpeg;base64,"+image.base64String
-  }
+	//seleccionar imagen  base64  con capacitor
+	async takePicture() {
+		const image = await Plugins.Camera.getPhoto({
+			quality: 100,
+			allowEditing: false,
+			resultType: CameraResultType.Base64,
+			source: CameraSource.Photos
+		});
+		console.log(image);
 
-  //uploadimage(base64){
-  //    // way 2
-  //    let task=this.afStorage.ref(`clientes/${Date.now()}.jpeg`).putString(base64, 'data_url')
-  //    .then(url => {console.log("upload success",url)
-  //    console.log(url.downloadURL);
-  //    
-  //    
-  //  })
-  //    
-  //}
+		//return  this.sanitizer.bypassSecurityTrustResourceUrl(image && (image.dataUrl));
+		return "data:image/jpeg;base64," + image.base64String
+	}
 
-  // subir imagen base 64
-  uploadImgB64(path: string, imageB64): Promise<any> {
-    return new Promise((resolve, reject) => {
-      let ref = this.afStorage.ref(path)
-      let task = ref.putString(imageB64, 'data_url');
-      task.snapshotChanges().pipe(
-        finalize(() => {
-          ref.getDownloadURL().subscribe(data => {
-            console.log(data);
-            resolve(data)
-          })
-        })
-      )
-        .subscribe()
-    });
-  }
-  //reducir imagen base64
-  private reducirImagen(base64) {
-		return this.generateFromImage(base64, 600, 600, 1)
+	//uploadimage(base64){
+	//    // way 2
+	//    let task=this.afStorage.ref(`clientes/${Date.now()}.jpeg`).putString(base64, 'data_url')
+	//    .then(url => {console.log("upload success",url)
+	//    console.log(url.downloadURL);
+	//    
+	//    
+	//  })
+	//    
+	//}
+
+	// subir imagen base 64
+	uploadImgB64(path: string, imageB64): Promise<any> {
+		return new Promise((resolve, reject) => {
+			let ref = this.afStorage.ref(path)
+			let task = ref.putString(imageB64, 'data_url');
+			task.snapshotChanges().pipe(
+				finalize(() => {
+					ref.getDownloadURL().subscribe(data => {
+						console.log(data);
+						resolve(data)
+					})
+				})
+			)
+				.subscribe()
+		});
+	}
+	//reducir imagen base64
+	reducirImagen(base64) {
+		return this.generateFromImage(base64, 500, 500, 1)
 			.then(data => {
 				//this.smallImg = data;
 				//this.smallSize = this.getImageSize(this.smallImg);
 				//return { base64: data, size: this.getImageSize(this.smallImg), blob: this.dataURLtoBlob(data) }
-        //return this.dataURLtoBlob(data)
-        return data
+				//return this.dataURLtoBlob(data)
+				return data
 			});
-  }
-  //imagen resize
+	}
+	//imagen resize
 	private generateFromImage(img, MAX_WIDTH: number = 1025, MAX_HEIGHT: number = 1025, quality: number = 1): Promise<string> {
 		return new Promise((resolve, reject) => {
 
@@ -103,12 +103,12 @@ export class ImagenesService {
 			image.src = img;
 		})
 	}
-  // extraer tamaño de imagen
+	// extraer tamaño de imagen
 	private getImageSize(data_url) {
 		var head = 'data:image/jpeg;base64,';
 		return ((data_url.length - head.length) * 3 / 4 / (1024 * 1024)).toFixed(4);
-  }
-  //converrtir a de base64 a blob
+	}
+	//converrtir a de base64 a blob
 	private dataURLtoBlob(dataURI) {
 		// convert base64 to raw binary data held in a string
 		var byteString = atob(dataURI.split(',')[1]);
@@ -126,8 +126,8 @@ export class ImagenesService {
 		return bb;
 	}
 
-	actualizarimg(image,idusu, id) {
-		return this.fire.collection('/animales-linea/'+idusu+'/productos').doc(id).set(image, { merge: true })
-	  }
+	actualizarimg(image, idlinea, id) {
+		return this.fire.collection('/animales-linea/' + idlinea + '/productos').doc(id).set(image, { merge: true })
+	}
 
 }
