@@ -25,7 +25,9 @@ export class FcmService {
       },
       "data": {
         "landing_page": page,
-        "idusu": id
+        "idusu": id,
+        "omar":titulo,
+        "jaime":body
       },
       "to": token_cli,
       "priority": "high",

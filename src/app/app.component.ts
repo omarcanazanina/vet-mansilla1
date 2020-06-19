@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { Platform } from '@ionic/angular';
+import { Platform, ToastController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import {
@@ -10,6 +10,7 @@ import {
   PushNotificationActionPerformed
 } from '@capacitor/core';
 import { FcmService } from './servicios/fcm.service';
+import { Router } from '@angular/router';
 
 const { PushNotifications } = Plugins;
 
@@ -24,7 +25,9 @@ export class AppComponent {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private fcm: FcmService
+    private fcm: FcmService,
+    private toastController: ToastController,
+    private route:Router
   ) {
     this.initializeApp();
 
@@ -55,7 +58,8 @@ export class AppComponent {
       //abierta
       PushNotifications.addListener('pushNotificationReceived',
         (notification: PushNotification) => {
-          alert('Push received: ' + JSON.stringify(notification));
+        this.confirma(notification.data.omar, notification.data.jaime, notification.data.landing_page)
+          //alert('Push received: ' + JSON.stringify(notification));
         }
       );
       //background
@@ -66,8 +70,26 @@ export class AppComponent {
       );
     });
 
+    
 
 
+  }
+  async confirma(t,m,ruta) {
+    const toast = await this.toastController.create({
+      header: t,
+      message: m,
+      position: 'top',
+      buttons: [
+     {
+          text: 'Aceptar',
+          role: 'cancel',
+          handler: () => {  
+            this.route.navigate(ruta)
+          }
+        }
+      ]
+    });
+    toast.present();
   }
 
 

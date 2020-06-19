@@ -115,6 +115,10 @@ const routes: Routes = [
     path: 'historial-emp',
     loadChildren: () => import('./pedidos-emp/historial-emp/historial-emp.module').then( m => m.HistorialEmpPageModule)
   },
+  {
+    path: 'mapa-emp',
+    loadChildren: () => import('./pedidos-emp/mapa-emp/mapa-emp.module').then( m => m.MapaEmpPageModule)
+  },
 
 
 ];

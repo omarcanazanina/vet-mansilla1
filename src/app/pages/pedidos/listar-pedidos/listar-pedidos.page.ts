@@ -61,68 +61,133 @@ export class ListarPedidosPage implements OnInit {
     //})
     this.Pedidos_Service.recupera_Pedidos_Pedido().subscribe(datos => {
       this.Pedido = datos
-      console.log(this.Pedido);
+      //console.log(this.Pedido);
       this.Pedidos_Service.recupera_Pedidos_Enviando().subscribe(datos => {
         this.Enviando = datos
-        console.log(this.Enviando);
+        //console.log(this.Enviando);
         this.nuevo = [].concat(this.Pedido, this.Enviando);
         this.ordenado = this.Pedidos_Service.ordenarjson(this.nuevo, 'fecha', 'desc')
         console.log(this.ordenado);
-        
       })
     })
-  
   }
 
 
   async metodos(item) {
-    const actionSheet = await this.actionSheetController.create({
-      header: 'Opciones',
-      buttons: [
-        {
-          text: 'Ver',
-          icon: 'eye',
-          handler: () => {
-            let dato = {
-              id: item.id,
-              nombre: item.cliente.nombre,
-              idcliente: item.cliente.id,
-              estado: item.estado,
-              fecha: item.fecha.seconds
+    if(item.estado == 'ENVIANDO' ){
+      const actionSheet = await this.actionSheetController.create({
+        header: 'Opciones',
+        buttons: [
+          {
+            text: 'Ver',
+            icon: 'eye',
+            handler: () => {
+              let dato = {
+                id: item.id,
+                nombre: item.cliente.nombre,
+                idcliente: item.cliente.id,
+                estado: item.estado,
+                fecha: item.fecha.seconds
+              }
+              this.router.navigate(['/detalle-pedido',dato])
             }
-            this.router.navigate(['/detalle-pedido',dato])
-          }
-        },
-        {
-          text: 'Asignar a repartidor',
-          icon: 'create',
-          handler: () => {
-            let dato = {
-              id: item.id,
-              nombre: item.cliente.nombre,
-              idcliente: item.cliente.id,
-              estado: item.estado,
-              fecha: item.fecha
+          },
+          {
+            text: 'Ver mapa',
+            icon: 'eye',
+            handler: () => {
+              let dato = {
+                id: item.id,
+                nombre: item.cliente.nombre,
+                idcliente: item.cliente.id,
+                estado: item.estado,
+                fecha: item.fecha.seconds,
+                lat: item.latlng.lat,
+                lng: item.latlng.lng
+              }
+              
+              this.router.navigate(['/tabs/pedidos/mapa',dato])
             }
-            this.navCtrl.navigateForward(['tabs/pedidos/asignar-repartidor', dato])
-          }
-        },
-        {
-          text: 'Cancel',
-          icon: 'close',
-          role: 'cancel',
-          handler: () => {
-            console.log('Cancel clicked');
-          }
-        }]
-    });
-
-    await actionSheet.present();
+          },
+          {
+            text: 'Cancel',
+            icon: 'close',
+            role: 'cancel',
+            handler: () => {
+              console.log('Cancel clicked');
+            }
+          }]
+      });
+  
+      await actionSheet.present();
+    }else{
+      const actionSheet = await this.actionSheetController.create({
+        header: 'Opciones',
+        buttons: [
+          {
+            text: 'Ver pedido',
+            icon: 'eye',
+            handler: () => {
+              let dato = {
+                id: item.id,
+                nombre: item.cliente.nombre,
+                idcliente: item.cliente.id,
+                estado: item.estado,
+                fecha: item.fecha.seconds
+              }
+              this.router.navigate(['/detalle-pedido',dato])
+            }
+          },
+          {
+            text: 'Ver mapa',
+            icon: 'eye',
+            handler: () => {
+              let dato = {
+                id: item.id,
+                nombre: item.cliente.nombre,
+                idcliente: item.cliente.id,
+                estado: item.estado,
+                fecha: item.fecha.seconds,
+                lat: item.latlng.lat,
+                lng: item.latlng.lng
+              }
+              
+              this.router.navigate(['/tabs/pedidos/mapa',dato])
+            }
+          },
+          {
+            text: 'Asignar a repartidor',
+            icon: 'create',
+            handler: () => {
+              let dato = {
+                id: item.id,
+                nombre: item.cliente.nombre,
+                idcliente: item.cliente.id,
+                estado: item.estado,
+                fecha: item.fecha
+              }
+              this.navCtrl.navigateForward(['tabs/pedidos/asignar-repartidor', dato])
+            }
+          },
+          {
+            text: 'Cancel',
+            icon: 'close',
+            role: 'cancel',
+            handler: () => {
+              console.log('Cancel clicked');
+            }
+          }]
+      });
+  
+      await actionSheet.present();
+    }
+    
+    
   }
 
-  salir() {
-    this.usuarioService.cerrarsesion()
-  }
+ //salir() {
+ //  this.usuarioService.cerrarsesion()
+ //}
 
   detalle(item){
     let dato = {

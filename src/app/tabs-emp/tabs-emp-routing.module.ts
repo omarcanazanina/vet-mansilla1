@@ -28,6 +28,11 @@ const routes: Routes = [
           path: 'historial-emp',
           loadChildren: () => import('../pedidos-emp/historial-emp/historial-emp.module').then( m => m.HistorialEmpPageModule)
         },
+        {
+          path: 'mapa-emp',
+          loadChildren: () => import('../pedidos-emp/mapa-emp/mapa-emp.module').then( m => m.MapaEmpPageModule)
+        },
+     
          // {
          //   path: 'ver-pedido',
          //   loadChildren: () => import('../pages/pedidos/ver-pedido/ver-pedido.module').then( m => m.VerPedidoPageModule)

@@ -26,9 +26,17 @@ export class UsuarioService {
   recuperaundato(usu_id: string): Observable<any> {
     return this.db.collection('users').doc(usu_id).valueChanges()
   }
+  recuperacliente(cliente_id: string): Observable<any> {
+    return this.db.collection('clientes').doc(cliente_id).valueChanges()
+  }
 
   listarEmpleados(rol):Observable<Usuario[]> {
     let query=res=>res.where("rol","==",rol)
+    return this.metodoService.getcollArrayconkey('users',query)
+  }
+
+  listarEmpleadosPedidos(rol):Observable<Usuario[]> {
+    let query=res=>res.where("rol","==",rol).where("estado","==",true)
     return this.metodoService.getcollArrayconkey('users',query)
   }
   modificarEmpleado(uid:string,data:Usuario){

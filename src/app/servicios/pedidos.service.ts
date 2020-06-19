@@ -8,6 +8,8 @@ export interface Pedido {
   cliente?: string;
   estado?: string;
   fecha?: Date;
+  lat?:string;
+  lng?:string
 }
 
 export interface DetallePedido {
@@ -17,6 +19,7 @@ export interface DetallePedido {
   fecha?: Date;
   idcliente?: string;
   detalle?: []
+
 }
 
 

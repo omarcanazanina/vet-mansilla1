@@ -46,8 +46,8 @@ export class LoginPage implements OnInit {
     }).catch(err => alert('datos incorrectos'))
   }
   
-  registro() {
-    this.router.navigate(['/registrate'])
-  }
+ // registro() {
+ //   this.router.navigate(['/registrate'])
+ // }
 
 }

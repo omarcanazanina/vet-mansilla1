@@ -105,6 +105,10 @@ const routes: Routes = [
             path: 'asignar-repartidor',
             loadChildren: () => import('../pages/pedidos/asignar-repartidor/asignar-repartidor.module').then( m => m.AsignarRepartidorPageModule)
           },
+          {
+            path: 'mapa',
+            loadChildren: () => import('../pages/pedidos/mapa/mapa.module').then( m => m.MapaPageModule)
+          },
        // {
        //  path: '',
        //  loadChildren: () => import('../pages/fabricas1/index/index.module').then( m => m.IndexPageModule)

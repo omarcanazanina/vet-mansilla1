@@ -43,12 +43,16 @@ export class ListarPedidosEmpPage implements OnInit {
   }
 
   detalle(item){
+   // console.log(item);
+    
     let dato = {
       id: item.id,
       nombre: item.cliente.nombre,
       idcliente: item.cliente.id,
       estado: item.estado,
-      fecha: item.fecha.seconds
+      fecha: item.fecha.seconds,
+      lat: item.latlng.lat,
+      lng: item.latlng.lng
     }
     this.router.navigate(['/detalle-pedido-emp',dato])
   }

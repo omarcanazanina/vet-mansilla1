@@ -19,6 +19,10 @@
       <h5>Nombre: {{pedido.nombre}}</h5>
      <p>Celular:<a href="https://wa.me/591{{cliente.telefono}}"> {{cliente.telefono}}</a></p> 
       <p>{{convertirFecha(pedido.fecha)}}</p>
+      <ion-tab-button (click)="mapa()">
+        <ion-icon name="map"></ion-icon>
+        <ion-label>Ubicación</ion-label>
+      </ion-tab-button>
     </ion-label>
   
   </ion-item>
@@ -27,7 +31,7 @@
     <p>{{pedido.producto.tipo}}</p>
     <p>Raza:{{pedido.producto.raza}}</p>
     <p>Edad:{{pedido.producto.edad}}</p>
-
+    
     <ion-item *ngFor="let det of pedido.detalle">
       <ion-label>
       <img class="icon" src="assets/icon/perfil.jpg" alt="">

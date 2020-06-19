@@ -52,14 +52,13 @@ export class DetallePedidoPage implements OnInit {
       // }
       })
      // console.log(this.detalle);
-      //this.total=0
-      //det.forEach(item=>{
-      //  item.detalle.forEach(det => {
-      //    console.log(det.cant);
-      //    
-      //   // this.total+=det.cant*det.precio
-      //  });
-      //})
+      this.total=0
+      det.forEach(item=>{
+        item.detalle.forEach((det:any) => {
+          this.total+=det.cant*det.precio
+        });
+      })
+      alert(this.total)
     })
   }
 
